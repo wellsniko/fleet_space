@@ -1,7 +1,8 @@
 import * as THREE from '/build/three.module.js';
 import {OrbitControls, MapControls} from '/jsm/controls/OrbitControls.js';
-import {FlyControls} from '/jsm/controls/FlyControls.js'
+// import {FlyControls} from '/jsm/controls/FlyControls.js'
 import Stats from '/jsm/libs/stats.module.js';
+import {FlyControls} from './three_js_config/FlyControls.js'
 
 
 			import { EffectComposer } from './jsm/postprocessing/EffectComposer.js';
@@ -281,13 +282,55 @@ scene.add(cube);
 				//
 
 				controls = new FlyControls( camera, renderer.domElement );
-
+                // controls.mousemove = function(){
+                //     return null
+                // }
+                controls.dispose.mousemove
 				controls.movementSpeed = 1000;
 				controls.domElement = renderer.domElement;
 				controls.rollSpeed = Math.PI / 24;
 				controls.autoForward = false;
-				controls.dragToLook = false;
+				controls.dragToLook = true;
 
+
+        FlyControls.keydown = function ( event ) {
+
+		if ( event.altKey ) {
+
+			return;
+
+		}
+
+		//event.preventDefault();
+
+		switch ( event.keyCode ) {
+
+			case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
+
+			case 87: /*W*/ this.moveState.forward = 1; break;
+			case 83: /*S*/ this.moveState.back = 1; break;
+
+			case 65: /*A*/ this.moveState.left = 1; break;
+			case 68: /*D*/ this.moveState.right = 1; break;
+
+			case 82: /*R*/ this.moveState.up = 1; break;
+			case 70: /*F*/ this.moveState.down = 1; break;
+
+			case 40: /*up*/ this.moveState.pitchUp = 1; break;
+			case 38: /*down*/ this.moveState.pitchDown = 1; break;
+
+			case 37: /*left*/ this.moveState.yawLeft = 1; break;
+			case 39: /*right*/ this.moveState.yawRight = 1; break;
+
+			case 81: /*Q*/ this.moveState.rollLeft = 1; break;
+			case 69: /*E*/ this.moveState.rollRight = 1; break;
+
+		}
+
+		this.updateMovementVector();
+		this.updateRotationVector();
+
+	};
 				//
 
 				stats = new Stats();

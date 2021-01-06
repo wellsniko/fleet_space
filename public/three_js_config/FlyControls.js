@@ -1,4 +1,10 @@
-THREE.FlyControls = function ( object, domElement ) {
+import {
+	EventDispatcher,
+	Quaternion,
+	Vector3
+} from '../../../build/three.module.js';
+
+var FlyControls = function ( object, domElement ) {
 
 	if ( domElement === undefined ) {
 
@@ -28,13 +34,13 @@ THREE.FlyControls = function ( object, domElement ) {
 	var changeEvent = { type: 'change' };
 	var EPS = 0.000001;
 
-	this.tmpQuaternion = new THREE.Quaternion();
+	this.tmpQuaternion = new Quaternion();
 
 	this.mouseStatus = 0;
 
 	this.moveState = { up: 0, down: 0, left: 0, right: 0, forward: 0, back: 0, pitchUp: 0, pitchDown: 0, yawLeft: 0, yawRight: 0, rollLeft: 0, rollRight: 0 };
-	this.moveVector = new THREE.Vector3( 0, 0, 0 );
-	this.rotationVector = new THREE.Vector3( 0, 0, 0 );
+	this.moveVector = new Vector3( 0, 0, 0 );
+	this.rotationVector = new Vector3( 0, 0, 0 );
 
 	this.keydown = function ( event ) {
 
@@ -50,14 +56,14 @@ THREE.FlyControls = function ( object, domElement ) {
 
 			case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
 
-			case 87: /*W*/ this.moveState.forward = 1; break;
-			case 83: /*S*/ this.moveState.back = 1; break;
+			case 82: /*W*/ this.moveState.forward = 1; break;
+			case 70: /*S*/ this.moveState.back = 1; break;
 
 			case 65: /*A*/ this.moveState.left = 1; break;
 			case 68: /*D*/ this.moveState.right = 1; break;
 
-			case 82: /*R*/ this.moveState.up = 1; break;
-			case 70: /*F*/ this.moveState.down = 1; break;
+			case 87: /*R*/ this.moveState.up = 1; break;
+			case 83: /*F*/ this.moveState.down = 1; break;
 
 			case 38: /*up*/ this.moveState.pitchUp = 1; break;
 			case 40: /*down*/ this.moveState.pitchDown = 1; break;
@@ -81,14 +87,14 @@ THREE.FlyControls = function ( object, domElement ) {
 
 			case 16: /* shift */ this.movementSpeedMultiplier = 1; break;
 
-			case 87: /*W*/ this.moveState.forward = 0; break;
-			case 83: /*S*/ this.moveState.back = 0; break;
+			case 82: /*W*/ this.moveState.forward = 0; break;
+			case 70: /*S*/ this.moveState.back = 0; break;
 
 			case 65: /*A*/ this.moveState.left = 0; break;
 			case 68: /*D*/ this.moveState.right = 0; break;
 
-			case 82: /*R*/ this.moveState.up = 0; break;
-			case 70: /*F*/ this.moveState.down = 0; break;
+			case 87: /*R*/ this.moveState.up = 0; break;
+			case 83: /*F*/ this.moveState.down = 0; break;
 
 			case 38: /*up*/ this.moveState.pitchUp = 0; break;
 			case 40: /*down*/ this.moveState.pitchDown = 0; break;
@@ -183,8 +189,8 @@ THREE.FlyControls = function ( object, domElement ) {
 
 	this.update = function () {
 
-		var lastQuaternion = new THREE.Quaternion();
-		var lastPosition = new THREE.Vector3();
+		var lastQuaternion = new Quaternion();
+		var lastPosition = new Vector3();
 
 		return function ( delta ) {
 
@@ -303,5 +309,7 @@ THREE.FlyControls = function ( object, domElement ) {
 
 };
 
-THREE.FlyControls.prototype = Object.create( THREE.EventDispatcher.prototype );
-THREE.FlyControls.prototype.constructor = THREE.FlyControls;
+FlyControls.prototype = Object.create( EventDispatcher.prototype );
+FlyControls.prototype.constructor = FlyControls;
+
+export { FlyControls };
