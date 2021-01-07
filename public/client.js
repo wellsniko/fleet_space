@@ -8,6 +8,7 @@ import { EffectComposer } from './jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from './jsm/postprocessing/RenderPass.js';
 import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 // import {renderShipControls} from '/ship_controls.js'
+	
 
 
     // const radius = 6371;
@@ -32,6 +33,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 	const clock = new THREE.Clock();
 	let loader = new GLTFLoader();  
 
+	let shipUpdateCounter = 0
 	init();
 	animate();
 	// renderShipStats()
@@ -121,7 +123,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
 
-
+		
 		controls = new FlyControls( camera, renderer.domElement );
         controls.dispose.mousemove
 		controls.movementSpeed = 10000;
@@ -146,9 +148,9 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
         //     object1.lookAt(camera.position);
         //     scene.add( object1 );
 			
-		stats = new Stats();
-		document.body.appendChild( stats.dom );
-		let helloThere = "hello there"
+		// stats = new Stats();
+		// document.body.appendChild( stats.dom );
+		// let helloThere = "hello there"
 		// helloThere.domElement = renderer.domElement
 		// // document.body.appendChild(helloThere.dom)
 
@@ -171,12 +173,19 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		composer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 	}
+	
 
 	function animate() {
 		requestAnimationFrame( animate );
 		render();
-		stats.update();
-		updateShipStats()
+		// stats.update();
+		shipUpdateCounter += 1
+		if (shipUpdateCounter === 10){
+			updateShipStats()
+			shipUpdateCounter = 0
+		}
+		
+
 	}
 
 	function render() {
@@ -187,51 +196,6 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		renderer.render(scene, camera)
 		
 	}
-	// renderShipStats()
-	// function renderShipStats(){
-	// 	// console.log(targetX - camera.position.x)
-	// 	var shipStats = document.getElementById("ship-stats")
-	// 	// while (shipStats.firstChild) {
-    // 	// 	shipStats.removeChild(shipStats.lastChild);
-  	// 	// }
-	// 	// shipStats.removeChild()
-	// 	// shipStats.appendChild(textX)
-	// 	// shipStats.appendChild(textY);
-	// 	// shipStats.appendChild(textZ)
-	// 	var textX = document.createElement('div');
-	// 	textX.style.position = 'absolute';
-		
-	// 	textX.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
-	// 	// text2.style.width = 100;
-	// 	// text2.style.height = 100;
-	// 	textX.id = "x"
-	// 	textX.style.backgroundColor = "blue";
-	// 	textX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
-	// 	textX.style.top = 200 + 'px';
-	// 	textX.style.left = 200 + 'px';
-
-	// 	var textY = document.createElement('div');
-	// 	textY.style.position = 'fixed';
-	// 	textY.id = "y"
-	// 	textY.style.backgroundColor = "blue";
-	// 	textY.innerHTML = "Y-axis delta:" +(targetY-camera.position.y)
-	// 	textY.style.top = 200 + 'px';
-	// 	textY.style.left = 200 + 'px';
-
-	// 	var textZ = document.createElement('div');
-	// 	textZ.style.position = 'fixed';
-	// 	textZ.id = "z"
-	// 	textZ.style.backgroundColor = "blue";
-	// 	textZ.innerHTML = "Z-axis delta:" + (targetZ-camera.position.z)
-	// 	textZ.style.top = 200 + 'px';
-	// 	textZ.style.left = 200 + 'px';
-
-	// 	shipStats.appendChild(textX)
-	// 	shipStats.appendChild(textY);
-	// 	shipStats.appendChild(textZ)
-		
-		
-	// }
 
 	function updateShipStats(){
 		document.getElementById("x").innerHTML = "X-axis delta:" + (targetX-camera.position.x)

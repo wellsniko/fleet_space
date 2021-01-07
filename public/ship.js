@@ -9,6 +9,8 @@ import Stats from '/jsm/libs/stats.module.js';
 			import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 
 
+			
+
             			// stars
 
 				// const r = radius, starsGeometry = [ new THREE.BufferGeometry(), new THREE.BufferGeometry() ];
@@ -67,4 +69,51 @@ import Stats from '/jsm/libs/stats.module.js';
 				// 	scene.add( stars );
 
                 // }
-                // //cube background
+				// //cube background
+				
+
+		// renderShipStats()
+	// function renderShipStats(){
+	// 	// console.log(targetX - camera.position.x)
+	// 	var shipStats = document.getElementById("ship-stats")
+	// 	// while (shipStats.firstChild) {
+    // 	// 	shipStats.removeChild(shipStats.lastChild);
+  	// 	// }
+	// 	// shipStats.removeChild()
+	// 	// shipStats.appendChild(textX)
+	// 	// shipStats.appendChild(textY);
+	// 	// shipStats.appendChild(textZ)
+	// 	var textX = document.createElement('div');
+	// 	textX.style.position = 'absolute';
+		
+	// 	textX.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
+	// 	// text2.style.width = 100;
+	// 	// text2.style.height = 100;
+	// 	textX.id = "x"
+	// 	textX.style.backgroundColor = "blue";
+	// 	textX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
+	// 	textX.style.top = 200 + 'px';
+	// 	textX.style.left = 200 + 'px';
+
+	// 	var textY = document.createElement('div');
+	// 	textY.style.position = 'fixed';
+	// 	textY.id = "y"
+	// 	textY.style.backgroundColor = "blue";
+	// 	textY.innerHTML = "Y-axis delta:" +(targetY-camera.position.y)
+	// 	textY.style.top = 200 + 'px';
+	// 	textY.style.left = 200 + 'px';
+
+	// 	var textZ = document.createElement('div');
+	// 	textZ.style.position = 'fixed';
+	// 	textZ.id = "z"
+	// 	textZ.style.backgroundColor = "blue";
+	// 	textZ.innerHTML = "Z-axis delta:" + (targetZ-camera.position.z)
+	// 	textZ.style.top = 200 + 'px';
+	// 	textZ.style.left = 200 + 'px';
+
+	// 	shipStats.appendChild(textX)
+	// 	shipStats.appendChild(textY);
+	// 	shipStats.appendChild(textZ)
+		
+		
+	// }
