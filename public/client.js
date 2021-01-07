@@ -13,7 +13,7 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
 
 
             const radius = 6371;
-			const tilt = 0.41;
+			const tilt = 0.5;
 			const rotationSpeed = 0.02;
 
 			const cloudsScale = 1.005;
@@ -41,8 +41,9 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
 
 			function init() {
 
-				camera = new THREE.PerspectiveCamera( 25, SCREEN_WIDTH / SCREEN_HEIGHT, 50, 1e7 );
-				camera.position.z = radius * 5;
+				camera = new THREE.PerspectiveCamera( 20, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000000 );
+				camera.position.set(-9000,80000,90000)
+				camera.rotation.x = 320 * Math.PI/180
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0x000000, 0.00000025 );
@@ -58,17 +59,70 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
 
 
 
+				
+
+
+
+
+
+
+
+
+
+
+
+
                 
 
                 let loader = new GLTFLoader();     
                 loader.load('./death_star/scene.gltf', function(gltf){
-                    let deathStar = gltf.scene.children[0];
-                    deathStar.scale.set(6,6,6)
+                    let deathStar = gltf.scene.children[0]
+					
+					deathStar.position.set(0,0,-25000)
+					deathStar.scale.set(3,3,3)
                     scene.add(deathStar)
-                    scene.add(gltf.scene);
+                    // scene.add(gltf.scene);
                     renderer.render(scene, camera)
-                })
+				})
+				
+
+	
+					let circleMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+					let circleGeometry = new THREE.CircleGeometry( 250, 64 );
+					circleGeometry.vertices.shift();
+					let deathCircle = new THREE.LineLoop( circleGeometry, circleMaterial ) 
+					deathCircle.position.set(-20,530,-24040)
+					deathCircle.rotation.x = -26 * Math.PI/180
+					scene.add(deathCircle);
                 //     const textureLoader = new THREE.TextureLoader()
+
+					let circle2Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+					let circle2Geometry = new THREE.CircleGeometry( 250, 64 );
+					circle2Geometry.vertices.shift();
+					let death2Circle = new THREE.LineLoop( circle2Geometry, circle2Material ) 
+					death2Circle.position.set(-20,2968.663,-19040)
+					death2Circle.rotation.x = -26 * Math.PI/180
+					// death2Circle.translate(0, -45, 0)
+					// death2Circle.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+					scene.add(death2Circle);
+
+					let circle3Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+					let circle3Geometry = new THREE.CircleGeometry( 500, 64 );
+					circle3Geometry.vertices.shift();
+					let death3Circle = new THREE.LineLoop( circle3Geometry, circle3Material ) 
+					death3Circle.position.set(-20,7845.989,-9040)
+					death3Circle.rotation.x = -26 * Math.PI/180
+					scene.add(death3Circle);
+
+					let circle4Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+					let circle4Geometry = new THREE.CircleGeometry( 1000, 64 );
+					circle4Geometry.vertices.shift();
+					let death4Circle = new THREE.LineLoop( circle4Geometry, circle4Material ) 
+					death4Circle.position.set(-20,12723.315,960)
+					death4Circle.rotation.x = -26 * Math.PI/180
+					scene.add(death4Circle);
+		
+
 
 
                 //     const materialNormalMap = new THREE.MeshPhongMaterial( {
@@ -112,15 +166,6 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
 
 
 
-
-
-                // let loader = new GLTFLoader();
-                // loader.load('./death_star/scene.gltf', function(gltf){
-                //     let deathStar = gltf.scene.children[0];
-                //     deathStar.scale.set(8,8,8)
-                //     scene.add(gltf.scene);
-                //     renderer.render(scene, camera)
-                // })
             
 
 				// planet
@@ -157,12 +202,12 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
 
 	
                 let materialArray = [];
-                let texture_ft = new THREE.TextureLoader().load('corona_ft.png');
-                let texture_bk = new THREE.TextureLoader().load('corona_bk.png');
-                let texture_up = new THREE.TextureLoader().load('corona_up.png');
-                let texture_dn = new THREE.TextureLoader().load('corona_dn.png');
-                let texture_rt = new THREE.TextureLoader().load('corona_rt.png');
-                let texture_lf = new THREE.TextureLoader().load('corona_lf.png');
+                let texture_ft = new THREE.TextureLoader().load('./skybox/front.png');
+                let texture_bk = new THREE.TextureLoader().load('./skybox/back.png');
+                let texture_up = new THREE.TextureLoader().load('./skybox/top.png');
+                let texture_dn = new THREE.TextureLoader().load('./skybox/bot.png');
+                let texture_rt = new THREE.TextureLoader().load('./skybox/left.png');
+                let texture_lf = new THREE.TextureLoader().load('./skybox/right.png');
                 materialArray.push(new THREE.MeshBasicMaterial({map: texture_ft}))
                 materialArray.push(new THREE.MeshBasicMaterial({map: texture_bk}))
                 materialArray.push(new THREE.MeshBasicMaterial({map: texture_up}))
@@ -171,7 +216,7 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
                 materialArray.push(new THREE.MeshBasicMaterial({map: texture_lf}))
                 for(let i=0;i<6;i++)
                     materialArray[i].side=THREE.BackSide;
-                const backgroundGeometry = new THREE.BoxGeometry(100000, 100000, 100000);
+                const backgroundGeometry = new THREE.BoxGeometry(400000, 400000, 400000);
                 const cube = new THREE.Mesh(backgroundGeometry, materialArray);
                 //
 
@@ -179,7 +224,7 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
                 scene.add(cube);
 
 
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer = new THREE.WebGLRenderer( );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 				document.body.appendChild( renderer.domElement );
@@ -191,7 +236,7 @@ import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
                 //     return null
                 // }
                 controls.dispose.mousemove
-				controls.movementSpeed = 1000;
+				controls.movementSpeed = 10000;
 				controls.domElement = renderer.domElement;
 				controls.rollSpeed = Math.PI / 24;
 				controls.autoForward = false;

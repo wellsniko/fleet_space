@@ -19,7 +19,7 @@ import Stats from '/jsm/libs/stats.module.js';
 				// const vertex = new THREE.Vector3();
 
 				// for ( let i = 0; i < 250; i ++ ) {
-
+        
 				// 	vertex.x = Math.random() * 2 - 1;
 				// 	vertex.y = Math.random() * 2 - 1;
 				// 	vertex.z = Math.random() * 2 - 1;
