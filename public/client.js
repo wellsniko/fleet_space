@@ -198,14 +198,22 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 	}
 
 	function updateShipStats(){
-		document.getElementById("x").innerHTML = "X-axis delta: " + (targetX-camera.position.x).toFixed(3)
+		document.getElementById("x").innerHTML = "X-axis delta: " + (targetX-camera.position.x).toFixed(3) 
 		document.getElementById("y").innerHTML = "Y-axis delta: " + (targetY-camera.position.y).toFixed(3)
 		document.getElementById("z").innerHTML = "Z-axis delta: " + (targetZ-camera.position.z).toFixed(3)
-		document.getElementById("pitch-rotation").innerHTML = "&theta; delta: " + (targetXRotation-camera.rotation.x).toFixed(3)
-		document.getElementById("roll-rotation").innerHTML = "&phi; delta: " + (0-camera.rotation.z).toFixed(3)
-		document.getElementById("yaw-rotation").innerHTML = "&psi; delta: " + (0-camera.rotation.y).toFixed(3)
+		document.getElementById("pitch-rotation").innerHTML = "&theta; Pitch-delta: " + (targetXRotation-camera.rotation.x).toFixed(3)
+		document.getElementById("roll-rotation").innerHTML = "&phi; Roll-delta: " + (0-camera.rotation.z).toFixed(3)
+		document.getElementById("yaw-rotation").innerHTML = "&psi; Yaw-delta: " + (0-camera.rotation.y).toFixed(3)
+
+
+		document.getElementById("pitch-speed").innerHTML = "&psi; Pitch-speed: " + (controls.moveState.pitch / 100).toFixed(3) + " m/s"
+		document.getElementById("roll-speed").innerHTML = "&psi; Roll-speed: " + (controls.moveState.roll / 100).toFixed(3) + " m/s"
+		document.getElementById("yaw-speed").innerHTML = "&psi; Yaw-speed: " + (controls.moveState.yaw / 100).toFixed(3) + " m/s"
+		document.getElementById("forward-speed").innerHTML = "&psi; Forward-speed: " + (controls.moveState.forwardBack / 100).toFixed(3)+ " m/s"
+		
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)
+		// console.log(controls.moveState)
 		
 	}
 

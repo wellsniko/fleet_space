@@ -103,3 +103,25 @@
   bottom: 0;
   right: 0;
 }
+
+
+
+#pitch-speed{
+  top: 100px;
+  left: 0;
+}
+
+#roll-speed{
+  top: 130px;
+  left: 0;
+}
+
+#yaw-speed{
+  top: 160px;
+  left: 0;
+}
+
+#forward-speed{
+  top: 190px;
+  left: 0;
+}
