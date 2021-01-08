@@ -71,3 +71,35 @@
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
 }
+
+
+
+#x {
+  top: 30px;
+  right: 0;
+}
+
+#y {
+  top: 60px;
+  right: 0;
+}
+
+
+#z {
+  top: 0;
+  right: 0;
+}
+
+#pitch-rotation {
+  bottom: 0;
+  left: 0;
+}
+
+#roll-rotation {
+  top: 0;
+  left: 0;
+}
+#yaw-rotation {
+  bottom: 0;
+  right: 0;
+}

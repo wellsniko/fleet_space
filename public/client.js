@@ -198,9 +198,12 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 	}
 
 	function updateShipStats(){
-		document.getElementById("x").innerHTML = "X-axis delta:" + (targetX-camera.position.x)
-		document.getElementById("y").innerHTML = "Y-axis delta:" + (targetY-camera.position.y)
-		document.getElementById("z").innerHTML = "Z-axis delta:" + (targetZ-camera.position.z)
+		document.getElementById("x").innerHTML = "X-axis delta: " + (targetX-camera.position.x).toFixed(3)
+		document.getElementById("y").innerHTML = "Y-axis delta: " + (targetY-camera.position.y).toFixed(3)
+		document.getElementById("z").innerHTML = "Z-axis delta: " + (targetZ-camera.position.z).toFixed(3)
+		document.getElementById("pitch-rotation").innerHTML = "&theta; delta: " + (targetXRotation-camera.rotation.x).toFixed(3)
+		document.getElementById("roll-rotation").innerHTML = "&phi; delta: " + (0-camera.rotation.z).toFixed(3)
+		document.getElementById("yaw-rotation").innerHTML = "&psi; delta: " + (0-camera.rotation.y).toFixed(3)
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)
 		
