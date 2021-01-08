@@ -54,7 +54,26 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		
 		scene.add( dirLight, dirLight2, dirLight3 );
 
-        loader.load('./death_star/scene.gltf', function(gltf){
+        loader.load('./star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
+            let starDestroyer = gltf.scene.children[0]
+			starDestroyer.position.set(0,5000,-22000)
+			starDestroyer.scale.set(3,3,3)
+            scene.add(starDestroyer)
+            // scene.add(gltf.scene);
+            renderer.render(scene, camera)
+		});
+
+		//     loader.load('./star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
+        //     let starDestroyerCol = gltf.scene.children[0]
+		// 	starDestroyerCol.position.set(0,5000,-22000)
+		// 	starDestroyer.scale.set(3,3,3)
+        //     scene.add(starDestroyer)
+        //     // scene.add(gltf.scene);
+        //     renderer.render(scene, camera)
+		// });
+
+
+		loader.load('./death_star/scene.gltf', function(gltf){
             let deathStar = gltf.scene.children[0]
 			deathStar.position.set(0,0,-25000)
 			deathStar.scale.set(3,3,3)
@@ -62,6 +81,8 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
 		});
+
+		
 // 		var spriteText = new THREE.SpriteText({ text: 'Hello world!' });
 // scene.add( spriteText );
 
@@ -206,11 +227,11 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		document.getElementById("yaw-rotation").innerHTML = "&psi; Yaw-delta: " + (0-camera.rotation.y).toFixed(3)
 
 
-		document.getElementById("pitch-speed").innerHTML = "&psi; Pitch-speed: " + (controls.moveState.pitch / 100).toFixed(3) + " m/s"
-		document.getElementById("roll-speed").innerHTML = "&psi; Roll-speed: " + (controls.moveState.roll / 100).toFixed(3) + " m/s"
-		document.getElementById("yaw-speed").innerHTML = "&psi; Yaw-speed: " + (controls.moveState.yaw / 100).toFixed(3) + " m/s"
+		document.getElementById("pitch-speed").innerHTML = "&psi; Pitch: " + (controls.moveState.pitch / 100).toFixed(3) + " m/s"
+		document.getElementById("roll-speed").innerHTML = "&psi; Roll: " + (controls.moveState.roll / 100).toFixed(3) + " m/s"
+		document.getElementById("yaw-speed").innerHTML = "&psi; Yaw: " + (controls.moveState.yaw / 100).toFixed(3) + " m/s"
 		document.getElementById("forward-speed").innerHTML = "&psi; Forward-speed: " + (controls.moveState.forwardBack / 100).toFixed(3)+ " m/s"
-		
+		document.getElementById("left-right-speed").innerHTML = "&psi; Left-Right-speed: " + (controls.moveState.leftRight / 100).toFixed(3)+ " m/s"
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)
 		// console.log(controls.moveState)
