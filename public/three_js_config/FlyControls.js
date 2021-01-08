@@ -38,11 +38,13 @@ var FlyControls = function ( object, domElement ) {
 
 	this.mouseStatus = 0;
 
-	this.moveState = { up: 0, down: 0, left: 0, right: 0, forward: 0, back: 0, pitchUp: 0, pitchDown: 0, yawLeft: 0, yawRight: 0, rollLeft: 0, rollRight: 0 };
+	this.moveState = { upDown: 0, leftRight: 0, forwardBack: 0, pitch: 0, yaw: 0, roll: 0 };
+	// this.moveState = { up: 0, down: 0, left: 0, right: 0, forward: 0, back: 0, pitchUp: 0, pitchDown: 0, yawLeft: 0, yawRight: 0, rollLeft: 0, rollRight: 0 };
 	this.moveVector = new Vector3( 0, 0, 0 );
 	this.rotationVector = new Vector3( 0, 0, 0 );
 
-	this.keydown = function ( event ) {
+
+		this.keydown = function ( event ) {
 
 		if ( event.altKey ) {
 
@@ -56,54 +58,23 @@ var FlyControls = function ( object, domElement ) {
 
 			case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
 
-			case 82: /*W*/ this.moveState.forward = 1; break;
-			case 70: /*S*/ this.moveState.back = 1; break;
+			case 82: /*W*/ this.moveState.forwardBack += 1; break;
+			case 70: /*S*/ this.moveState.forwardBack -= 1; break;
 
-			case 65: /*A*/ this.moveState.left = 1; break;
-			case 68: /*D*/ this.moveState.right = 1; break;
+			case 65: /*A*/ this.moveState.leftRight += 1; break;
+			case 68: /*D*/ this.moveState.leftRight -= 1; break;
 
-			case 87: /*R*/ this.moveState.up = 1; break;
-			case 83: /*F*/ this.moveState.down = 1; break;
+			case 87: /*R*/ this.moveState.upDown += 1; break;
+			case 83: /*F*/ this.moveState.upDown -= 1; break;
 
-			case 38: /*up*/ this.moveState.pitchUp = 1; break;
-			case 40: /*down*/ this.moveState.pitchDown = 1; break;
+			case 38: /*up*/ this.moveState.pitch += 1; break;
+			case 40: /*down*/ this.moveState.pitch -= 1; break;
 
-			case 37: /*left*/ this.moveState.yawLeft = 1; break;
-			case 39: /*right*/ this.moveState.yawRight = 1; break;
+			case 37: /*left*/ this.moveState.yaw += 1; break;
+			case 39: /*right*/ this.moveState.yaw -= 1; break;
 
-			case 81: /*Q*/ this.moveState.rollLeft = 1; break;
-			case 69: /*E*/ this.moveState.rollRight = 1; break;
-
-		}
-
-		this.updateMovementVector();
-		this.updateRotationVector();
-
-	};
-
-	this.keyup = function ( event ) {
-
-		switch ( event.keyCode ) {
-
-			case 16: /* shift */ this.movementSpeedMultiplier = 1; break;
-
-			case 82: /*W*/ this.moveState.forward = 0; break;
-			case 70: /*S*/ this.moveState.back = 0; break;
-
-			case 65: /*A*/ this.moveState.left = 0; break;
-			case 68: /*D*/ this.moveState.right = 0; break;
-
-			case 87: /*R*/ this.moveState.up = 0; break;
-			case 83: /*F*/ this.moveState.down = 0; break;
-
-			case 38: /*up*/ this.moveState.pitchUp = 0; break;
-			case 40: /*down*/ this.moveState.pitchDown = 0; break;
-
-			case 37: /*left*/ this.moveState.yawLeft = 0; break;
-			case 39: /*right*/ this.moveState.yawRight = 0; break;
-
-			case 81: /*Q*/ this.moveState.rollLeft = 0; break;
-			case 69: /*E*/ this.moveState.rollRight = 0; break;
+			case 81: /*Q*/ this.moveState.roll += 1; break;
+			case 69: /*E*/ this.moveState.roll -= 1; break;
 
 		}
 
@@ -112,80 +83,152 @@ var FlyControls = function ( object, domElement ) {
 
 	};
 
-	this.mousedown = function ( event ) {
 
-		if ( this.domElement !== document ) {
 
-			this.domElement.focus();
+	// this.keydown = function ( event ) {
 
-		}
+	// 	if ( event.altKey ) {
 
-		event.preventDefault();
-		event.stopPropagation();
+	// 		return;
 
-		if ( this.dragToLook ) {
+	// 	}
 
-			this.mouseStatus ++;
+	// 	//event.preventDefault();
 
-		} else {
+	// 	switch ( event.keyCode ) {
 
-			switch ( event.button ) {
+	// 		case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
 
-				case 0: this.moveState.forward = 1; break;
-				case 2: this.moveState.back = 1; break;
+	// 		case 82: /*W*/ this.moveState.forward = 1; break;
+	// 		case 70: /*S*/ this.moveState.back = 1; break;
 
-			}
+	// 		case 65: /*A*/ this.moveState.left = 1; break;
+	// 		case 68: /*D*/ this.moveState.right = 1; break;
 
-			this.updateMovementVector();
+	// 		case 87: /*R*/ this.moveState.up = 1; break;
+	// 		case 83: /*F*/ this.moveState.down = 1; break;
 
-		}
+	// 		case 38: /*up*/ this.moveState.pitchUp = 1; break;
+	// 		case 40: /*down*/ this.moveState.pitchDown = 1; break;
 
-	};
+	// 		case 37: /*left*/ this.moveState.yawLeft = 1; break;
+	// 		case 39: /*right*/ this.moveState.yawRight = 1; break;
 
-	this.mousemove = function ( event ) {
+	// 		case 81: /*Q*/ this.moveState.rollLeft = 1; break;
+	// 		case 69: /*E*/ this.moveState.rollRight = 1; break;
 
-		if ( ! this.dragToLook || this.mouseStatus > 0 ) {
+	// 	}
 
-			var container = this.getContainerDimensions();
-			var halfWidth = container.size[ 0 ] / 2;
-			var halfHeight = container.size[ 1 ] / 2;
+	// 	this.updateMovementVector();
+	// 	this.updateRotationVector();
 
-			this.moveState.yawLeft = - ( ( event.pageX - container.offset[ 0 ] ) - halfWidth ) / halfWidth;
-			this.moveState.pitchDown = ( ( event.pageY - container.offset[ 1 ] ) - halfHeight ) / halfHeight;
+	// };
 
-			this.updateRotationVector();
+	// this.keyup = function ( event ) {
 
-		}
+	// 	switch ( event.keyCode ) {
 
-	};
+	// 		case 16: /* shift */ this.movementSpeedMultiplier = 1; break;
 
-	this.mouseup = function ( event ) {
+	// 		case 82: /*W*/ this.moveState.forward = 0; break;
+	// 		case 70: /*S*/ this.moveState.back = 0; break;
 
-		event.preventDefault();
-		event.stopPropagation();
+	// 		case 65: /*A*/ this.moveState.left = 0; break;
+	// 		case 68: /*D*/ this.moveState.right = 0; break;
 
-		if ( this.dragToLook ) {
+	// 		case 87: /*R*/ this.moveState.up = 0; break;
+	// 		case 83: /*F*/ this.moveState.down = 0; break;
 
-			this.mouseStatus --;
+	// 		case 38: /*up*/ this.moveState.pitchUp = 0; break;
+	// 		case 40: /*down*/ this.moveState.pitchDown = 0; break;
 
-			this.moveState.yawLeft = this.moveState.pitchDown = 0;
+	// 		case 37: /*left*/ this.moveState.yawLeft = 0; break;
+	// 		case 39: /*right*/ this.moveState.yawRight = 0; break;
 
-		} else {
+	// 		case 81: /*Q*/ this.moveState.rollLeft = 0; break;
+	// 		case 69: /*E*/ this.moveState.rollRight = 0; break;
 
-			switch ( event.button ) {
+	// 	}
 
-				case 0: this.moveState.forward = 0; break;
-				case 2: this.moveState.back = 0; break;
+	// 	this.updateMovementVector();
+	// 	this.updateRotationVector();
 
-			}
+	// };
 
-			this.updateMovementVector();
+	// this.mousedown = function ( event ) {
 
-		}
+	// 	if ( this.domElement !== document ) {
 
-		this.updateRotationVector();
+	// 		this.domElement.focus();
 
-	};
+	// 	}
+
+	// 	event.preventDefault();
+	// 	event.stopPropagation();
+
+	// 	if ( this.dragToLook ) {
+
+	// 		this.mouseStatus ++;
+
+	// 	} else {
+
+	// 		switch ( event.button ) {
+
+	// 			case 0: this.moveState.forward = 1; break;
+	// 			case 2: this.moveState.back = 1; break;
+
+	// 		}
+
+	// 		this.updateMovementVector();
+
+	// 	}
+
+	// };
+
+	// this.mousemove = function ( event ) {
+
+	// 	if ( ! this.dragToLook || this.mouseStatus > 0 ) {
+
+	// 		var container = this.getContainerDimensions();
+	// 		var halfWidth = container.size[ 0 ] / 2;
+	// 		var halfHeight = container.size[ 1 ] / 2;
+
+	// 		this.moveState.yawLeft = - ( ( event.pageX - container.offset[ 0 ] ) - halfWidth ) / halfWidth;
+	// 		this.moveState.pitchDown = ( ( event.pageY - container.offset[ 1 ] ) - halfHeight ) / halfHeight;
+
+	// 		this.updateRotationVector();
+
+	// 	}
+
+	// };
+
+	// this.mouseup = function ( event ) {
+
+	// 	event.preventDefault();
+	// 	event.stopPropagation();
+
+	// 	if ( this.dragToLook ) {
+
+	// 		this.mouseStatus --;
+
+	// 		this.moveState.yawLeft = this.moveState.pitchDown = 0;
+
+	// 	} else {
+
+	// 		switch ( event.button ) {
+
+	// 			case 0: this.moveState.forward = 0; break;
+	// 			case 2: this.moveState.back = 0; break;
+
+	// 		}
+
+	// 		this.updateMovementVector();
+
+	// 	}
+
+	// 	this.updateRotationVector();
+
+	// };
 
 	this.update = function () {
 
@@ -219,23 +262,36 @@ var FlyControls = function ( object, domElement ) {
 
 	}();
 
-	this.updateMovementVector = function () {
 
-		var forward = ( this.moveState.forward || ( this.autoForward && ! this.moveState.back ) ) ? 1 : 0;
+		this.updateMovementVector = function () {
 
-		this.moveVector.x = ( - this.moveState.left + this.moveState.right );
-		this.moveVector.y = ( - this.moveState.down + this.moveState.up );
-		this.moveVector.z = ( - forward + this.moveState.back );
+		// var forward = ( this.moveState.forward || ( this.autoForward && ! this.moveState.back ) ) ? 1 : 0;
+
+		this.moveVector.x = ( - this.moveState.leftRight);
+		this.moveVector.y = ( this.moveState.upDown);
+		this.moveVector.z = ( - this.moveState.forwardBack);
 
 		//console.log( 'move:', [ this.moveVector.x, this.moveVector.y, this.moveVector.z ] );
 
 	};
 
+	// this.updateMovementVector = function () {
+
+	// 	var forward = ( this.moveState.forward || ( this.autoForward && ! this.moveState.back ) ) ? 1 : 0;
+
+	// 	this.moveVector.x = ( - this.moveState.left + this.moveState.right );
+	// 	this.moveVector.y = ( - this.moveState.down + this.moveState.up );
+	// 	this.moveVector.z = ( - forward + this.moveState.back );
+
+	// 	//console.log( 'move:', [ this.moveVector.x, this.moveVector.y, this.moveVector.z ] );
+
+	// };
+
 	this.updateRotationVector = function () {
 
-		this.rotationVector.x = ( - this.moveState.pitchDown + this.moveState.pitchUp );
-		this.rotationVector.y = ( - this.moveState.yawRight + this.moveState.yawLeft );
-		this.rotationVector.z = ( - this.moveState.rollRight + this.moveState.rollLeft );
+		this.rotationVector.x = ( this.moveState.pitch);
+		this.rotationVector.y = ( this.moveState.yaw);
+		this.rotationVector.z = ( this.moveState.roll);
 
 		//console.log( 'rotate:', [ this.rotationVector.x, this.rotationVector.y, this.rotationVector.z ] );
 
@@ -280,29 +336,29 @@ var FlyControls = function ( object, domElement ) {
 	this.dispose = function () {
 
 		this.domElement.removeEventListener( 'contextmenu', contextmenu, false );
-		this.domElement.removeEventListener( 'mousedown', _mousedown, false );
-		this.domElement.removeEventListener( 'mousemove', _mousemove, false );
-		this.domElement.removeEventListener( 'mouseup', _mouseup, false );
+		// this.domElement.removeEventListener( 'mousedown', _mousedown, false );
+		// this.domElement.removeEventListener( 'mousemove', _mousemove, false );
+		// this.domElement.removeEventListener( 'mouseup', _mouseup, false );
 
 		window.removeEventListener( 'keydown', _keydown, false );
-		window.removeEventListener( 'keyup', _keyup, false );
+		// window.removeEventListener( 'keyup', _keyup, false );
 
 	};
 
-	var _mousemove = bind( this, this.mousemove );
-	var _mousedown = bind( this, this.mousedown );
-	var _mouseup = bind( this, this.mouseup );
+	// var _mousemove = bind( this, this.mousemove );
+	// var _mousedown = bind( this, this.mousedown );
+	// var _mouseup = bind( this, this.mouseup );
 	var _keydown = bind( this, this.keydown );
-	var _keyup = bind( this, this.keyup );
+	// var _keyup = bind( this, this.keyup );
 
 	this.domElement.addEventListener( 'contextmenu', contextmenu, false );
 
-	this.domElement.addEventListener( 'mousemove', _mousemove, false );
-	this.domElement.addEventListener( 'mousedown', _mousedown, false );
-	this.domElement.addEventListener( 'mouseup', _mouseup, false );
+	// this.domElement.addEventListener( 'mousemove', _mousemove, false );
+	// this.domElement.addEventListener( 'mousedown', _mousedown, false );
+	// this.domElement.addEventListener( 'mouseup', _mouseup, false );
 
 	window.addEventListener( 'keydown', _keydown, false );
-	window.addEventListener( 'keyup', _keyup, false );
+	// window.addEventListener( 'keyup', _keyup, false );
 
 	this.updateMovementVector();
 	this.updateRotationVector();

@@ -125,12 +125,12 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 
 		
 		controls = new FlyControls( camera, renderer.domElement );
-        controls.dispose.mousemove
-		controls.movementSpeed = 10000;
+        // controls.dispose.mousemove
+		controls.movementSpeed = 100;
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 24;
+		controls.rollSpeed = Math.PI / 10000;
 		controls.autoForward = false;
-		controls.dragToLook = true;
+		// controls.dragToLook = true;
 
 
 			
