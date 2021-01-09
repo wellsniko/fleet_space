@@ -73,6 +73,16 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
             renderer.render(scene, camera)
 		});
 
+		loader.load('./star_wars_tie_fighter/scene.gltf', function(gltf){
+            let tieFighter = gltf.scene.children[0]
+			tieFighter.position.set(-8200,37000,69100)
+			tieFighter.scale.set(100,100,100)
+			// tieFighter.domElement.style.position = 'absolute';
+            scene.add(tieFighter)
+            // renderer.render(scene, tieFighter)
+            renderer.render(scene, camera, tieFighter.domElement)
+		});
+
 		//     loader.load('./star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
         //     let starDestroyerCol = gltf.scene.children[0]
 		// 	starDestroyerCol.position.set(0,5000,-22000)
@@ -213,10 +223,12 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		requestAnimationFrame( animate );
 		render();
 		// stats.update();
+		
 		shipUpdateCounter += 1
 		if (shipUpdateCounter === 10){
 			updateShipStats()
 			shipUpdateCounter = 0
+			
 		}
 		
 
@@ -224,9 +236,10 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 
 	function render() {
 		const delta = clock.getDelta();
-		
+		// tieFighter.position.z -= 100
 		controls.update( delta );
-        composer.render( delta );
+		composer.render( delta );
+		// tieFighter.position.z -= 1000
 		renderer.render(scene, camera)
 		
 	}
@@ -238,7 +251,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + (-34 - ( camera.rotation.x *(180/Math.PI))).toFixed(2)+ "&#176;" // opposite
 		document.getElementById("roll-rotation").innerHTML = "&phi;-delta: " + (  camera.rotation.z * (180/ Math.PI)).toFixed(2)+ "&#176;"
 		document.getElementById("yaw-rotation").innerHTML = "&psi;-delta: " + ( camera.rotation.y * (180/ Math.PI)).toFixed(2)+ "&#176;"
-		console.log(camera.rotation.x)
+		// console.log(camera.rotation.x)
 
 		document.getElementById("pitch-speed").innerHTML = "Pitch: " + (controls.moveState.pitch / 10).toFixed(2) + " m/s"
 		document.getElementById("roll-speed").innerHTML = "Roll: " + (controls.moveState.roll / 10).toFixed(2) + " m/s"
@@ -246,7 +259,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		document.getElementById("forward-speed").innerHTML = "Forward-speed: " + (controls.moveState.forwardBack / 10).toFixed(2)+ " m/s"
 		document.getElementById("left-right-speed").innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight / 10).toFixed(2)+ " m/s"
 		document.getElementById("up-down-speed").innerHTML = "Up-Down-speed: " + (controls.moveState.upDown / 10).toFixed(2)+ " m/s"
-
+		
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)
 		// console.log(controls.moveState)
