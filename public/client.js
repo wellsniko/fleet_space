@@ -41,24 +41,34 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 	function init() {
 		scene = new THREE.Scene();
 		
-		camera = new THREE.PerspectiveCamera( 25, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000000 );
+		camera = new THREE.PerspectiveCamera( 25, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 1000000 );
 		camera.position.set(-9000,40000,90000)
 		camera.rotation.x = 345 * Math.PI/180
 		// scene.fog = new THREE.FogExp2( 0x000000, 0.00000025 );
-		dirLight = new THREE.DirectionalLight( 0xffffff, 7 );
+		dirLight = new THREE.DirectionalLight( 0xffffff, 1.8 );
         dirLight.position.set( - 1, 0, 1 ).normalize();
-        dirLight2 = new THREE.DirectionalLight( 0xffffff, 3 );
+        dirLight2 = new THREE.DirectionalLight( 0xffffff, 1.8 );
         dirLight2.position.set( 20000, 1000, -50000 ).normalize();
-        dirLight3 = new THREE.DirectionalLight( 0xffffff, 4 );
+        dirLight3 = new THREE.DirectionalLight( 0xffffff, 1.8 );
 		dirLight3.position.set( 10000, 20000, 0 ).normalize();
 		
 		scene.add( dirLight, dirLight2, dirLight3 );
 
         loader.load('./star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
             let starDestroyer = gltf.scene.children[0]
-			starDestroyer.position.set(0,5000,-22000)
-			starDestroyer.scale.set(3,3,3)
+			starDestroyer.position.set(-2000,8000,-9000)
+			starDestroyer.scale.set(2,2,2)
             scene.add(starDestroyer)
+            // scene.add(gltf.scene);
+            renderer.render(scene, camera)
+		});
+
+		loader.load('./old_executor/scene.gltf', function(gltf){
+            let oldExecutor = gltf.scene.children[0]
+			oldExecutor.position.set(-8200,34500,68100)
+			oldExecutor.scale.set(100,100,100)
+			// oldExecutor.domElement.style.position = 'absolute';
+            scene.add(oldExecutor)
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
 		});
@@ -76,7 +86,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		loader.load('./death_star/scene.gltf', function(gltf){
             let deathStar = gltf.scene.children[0]
 			deathStar.position.set(0,0,-25000)
-			deathStar.scale.set(3,3,3)
+			deathStar.scale.set(5,5,5)
             scene.add(deathStar)
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
@@ -142,6 +152,9 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		renderer = new THREE.WebGLRenderer( );
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+		// renderer.domElement.style.position = 'absolute';
+		// renderer.domElement.style.top = 0;
+		// renderer.domElement.style.zIndex = '1';
 		document.body.appendChild( renderer.domElement );
 
 		
@@ -219,19 +232,21 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 	}
 
 	function updateShipStats(){
-		document.getElementById("x").innerHTML = "X-axis delta: " + (targetX-camera.position.x).toFixed(3) 
-		document.getElementById("y").innerHTML = "Y-axis delta: " + (targetY-camera.position.y).toFixed(3)
-		document.getElementById("z").innerHTML = "Z-axis delta: " + (targetZ-camera.position.z).toFixed(3)
-		document.getElementById("pitch-rotation").innerHTML = "&theta; Pitch-delta: " + (targetXRotation-camera.rotation.x).toFixed(3)
-		document.getElementById("roll-rotation").innerHTML = "&phi; Roll-delta: " + (0-camera.rotation.z).toFixed(3)
-		document.getElementById("yaw-rotation").innerHTML = "&psi; Yaw-delta: " + (0-camera.rotation.y).toFixed(3)
+		document.getElementById("x").innerHTML = "x: " + (targetX-camera.position.x/-10).toFixed(1) + " m"
+		document.getElementById("y").innerHTML = "y: " + (targetY-camera.position.y/10).toFixed(1) + " m"
+		document.getElementById("z").innerHTML = "z: " + (targetZ-camera.position.z/10).toFixed(1) + " m"
+		document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + (-34 - ( camera.rotation.x *(180/Math.PI))).toFixed(2)+ "&#176;" // opposite
+		document.getElementById("roll-rotation").innerHTML = "&phi;-delta: " + (  camera.rotation.z * (180/ Math.PI)).toFixed(2)+ "&#176;"
+		document.getElementById("yaw-rotation").innerHTML = "&psi;-delta: " + ( camera.rotation.y * (180/ Math.PI)).toFixed(2)+ "&#176;"
+		console.log(camera.rotation.x)
 
+		document.getElementById("pitch-speed").innerHTML = "Pitch: " + (controls.moveState.pitch / 10).toFixed(2) + " m/s"
+		document.getElementById("roll-speed").innerHTML = "Roll: " + (controls.moveState.roll / 10).toFixed(2) + " m/s"
+		document.getElementById("yaw-speed").innerHTML = "Yaw: " + (controls.moveState.yaw / 10).toFixed(2) + " m/s"
+		document.getElementById("forward-speed").innerHTML = "Forward-speed: " + (controls.moveState.forwardBack / 10).toFixed(2)+ " m/s"
+		document.getElementById("left-right-speed").innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight / 10).toFixed(2)+ " m/s"
+		document.getElementById("up-down-speed").innerHTML = "Up-Down-speed: " + (controls.moveState.upDown / 10).toFixed(2)+ " m/s"
 
-		document.getElementById("pitch-speed").innerHTML = "&psi; Pitch: " + (controls.moveState.pitch / 100).toFixed(3) + " m/s"
-		document.getElementById("roll-speed").innerHTML = "&psi; Roll: " + (controls.moveState.roll / 100).toFixed(3) + " m/s"
-		document.getElementById("yaw-speed").innerHTML = "&psi; Yaw: " + (controls.moveState.yaw / 100).toFixed(3) + " m/s"
-		document.getElementById("forward-speed").innerHTML = "&psi; Forward-speed: " + (controls.moveState.forwardBack / 100).toFixed(3)+ " m/s"
-		document.getElementById("left-right-speed").innerHTML = "&psi; Left-Right-speed: " + (controls.moveState.leftRight / 100).toFixed(3)+ " m/s"
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)
 		// console.log(controls.moveState)

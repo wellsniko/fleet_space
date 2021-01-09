@@ -58,23 +58,23 @@ var FlyControls = function ( object, domElement ) {
 
 			case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
 
-			case 82: /*W*/ this.moveState.forwardBack += 1; break;
-			case 70: /*S*/ this.moveState.forwardBack -= 1; break;
+			case 82: /*W*/ this.moveState.forwardBack += .5; break;
+			case 70: /*S*/ this.moveState.forwardBack -= .5; break;
 
-			case 65: /*A*/ this.moveState.leftRight += 1; break;
-			case 68: /*D*/ this.moveState.leftRight -= 1; break;
+			case 65: /*A*/ this.moveState.leftRight += .5; break;
+			case 68: /*D*/ this.moveState.leftRight -= .5; break;
 
-			case 87: /*R*/ this.moveState.upDown += 1; break;
-			case 83: /*F*/ this.moveState.upDown -= 1; break;
+			case 87: /*R*/ this.moveState.upDown += .5; break;
+			case 83: /*F*/ this.moveState.upDown -= .5; break;
 
-			case 38: /*up*/ this.moveState.pitch += 1; break;
-			case 40: /*down*/ this.moveState.pitch -= 1; break;
+			case 38: /*up*/ this.moveState.pitch += .5; break;
+			case 40: /*down*/ this.moveState.pitch -= .5; break;
 
-			case 37: /*left*/ this.moveState.yaw += 1; break;
-			case 39: /*right*/ this.moveState.yaw -= 1; break;
+			case 37: /*left*/ this.moveState.yaw += .5; break;
+			case 39: /*right*/ this.moveState.yaw -= .5; break;
 
-			case 81: /*Q*/ this.moveState.roll += 1; break;
-			case 69: /*E*/ this.moveState.roll -= 1; break;
+			case 81: /*Q*/ this.moveState.roll += .5; break;
+			case 69: /*E*/ this.moveState.roll -= .5; break;
 
 		}
 

@@ -39,7 +39,7 @@
 /* Modal Header */
 .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: black;
   color: white;
 }
 
@@ -49,7 +49,7 @@
 /* Modal Footer */
 .modal-footer {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: red;
   color: white;
 }
 
@@ -75,58 +75,118 @@
 
 
 #x {
-  top: 30px;
-  right: 0;
+  color: white;
+  font-weight: 600;
+  line-height: 15px;
+  font-size: small;
 }
 
 #y {
-  top: 60px;
-  right: 0;
+  color: white;
+  font-weight: 600;
+    line-height: 15px;
+  font-size: small;
 }
 
 
 #z {
-  top: 0;
-  right: 0;
+  color: white;
+  font-weight: 600;
+    line-height: 15px;
+  font-size: small;
 }
 
 #pitch-rotation {
-  bottom: 0;
-  left: 0;
+    color: white;
+  font-weight: 600;
+  line-height: 20px;
+  font-size: small;
 }
 
 #roll-rotation {
-  top: 0;
-  left: 0;
+
+    color: white;
+  font-weight: 600;
+  line-height: 20px;
+  font-size: small;
 }
 #yaw-rotation {
-  bottom: 0;
-  right: 0;
+
+    color: white;
+  font-weight: 600;
+  line-height: 20px;
+  font-size: small;
 }
 
 
 
 #pitch-speed{
-  top: 100px;
-  left: 0;
+    color: white;
+  font-weight: 400;
+  line-height: 15px;
+  font-size: small;
 }
 
 #roll-speed{
-  top: 130px;
-  left: 0;
+    color: white;
+  font-weight: 400;
+  line-height: 15px;
+  font-size: small;
 }
 
 #yaw-speed{
-  top: 160px;
-  left: 0;
+    color: white;
+  font-weight: 400;
+  line-height: 25px;
+  font-size: small;
 }
 
 #forward-speed{
-  top: 190px;
-  left: 0;
+    color: white;
+  font-weight: 400;
+  line-height: 25px;
+  font-size: small;
 }
 
 #left-right-speed{
-  top: 220px;
-  left: 0;
+    color: white;
+  font-weight: 400;
+  line-height: 25px;
+  font-size: small;
+}
+
+#up-down-speed{
+  color: white;
+  font-weight: 400;
+  line-height: 25px;
+  font-size: small;
+}
+
+#xyz {
+   top: 50%;
+   left: 28%;
+}
+
+#pitch-div {
+  bottom: 20%;
+  left: 47%;
+}
+
+#yaw-div {
+  top: 50%;
+  right: 30%;
+}
+
+#roll-div {
+  top: 20%;
+  left: 47%;
+}
+
+#speed-div {
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  left: 25%;
+  justify-content: space-between;
+  width: 50%;
 }
