@@ -2,7 +2,7 @@ import {
 	EventDispatcher,
 	Quaternion,
 	Vector3
-} from '../../node_modules/three/build/three.module.js';
+} from '../three/build/three.module.js';
 
 var FlyControls = function ( object, domElement ) {
 

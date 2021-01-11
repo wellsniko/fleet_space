@@ -1,12 +1,12 @@
-import * as THREE from '../node_modules/three/build/three.module.js';
+import * as THREE from './three/build/three.module.js';
 // import {OrbitControls, MapControls} from '/jsm/controls/OrbitControls.js';
 // import {FlyControls} from '/jsm/controls/FlyControls.js'
 // import Stats from '/jsm/libs/stats.module.js';
 import {FlyControls} from './three_js_config/FlyControls.js'
-import { GLTFLoader } from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
-import { EffectComposer } from '../node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from '../node_modules/three/examples/jsm/postprocessing/RenderPass.js';
-import { FilmPass } from '../node_modules/three/examples/jsm/postprocessing/FilmPass.js';
+import { GLTFLoader } from './three/examples/jsm/loaders/GLTFLoader.js';
+import { EffectComposer } from './three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from './three/examples/jsm/postprocessing/RenderPass.js';
+import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 // import {renderShipControls} from '/ship_controls.js'
 	
 
