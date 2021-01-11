@@ -4,9 +4,9 @@ import {OrbitControls, MapControls} from '/jsm/controls/OrbitControls.js';
 import Stats from '/jsm/libs/stats.module.js';
 import {FlyControls} from './three_js_config/FlyControls.js'
 import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
-import { EffectComposer } from './jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from './jsm/postprocessing/RenderPass.js';
-import { FilmPass } from './jsm/postprocessing/FilmPass.js';
+import { EffectComposer } from '/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from '/jsm/postprocessing/RenderPass.js';
+import { FilmPass } from '/jsm/postprocessing/FilmPass.js';
 // import {renderShipControls} from '/ship_controls.js'
 	
 
@@ -54,7 +54,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		
 		scene.add( dirLight, dirLight2, dirLight3 );
 
-        loader.load('./star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
+        loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
             let starDestroyer = gltf.scene.children[0]
 			starDestroyer.position.set(-2000,8000,-9000)
 			starDestroyer.scale.set(2,2,2)
@@ -63,7 +63,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
             renderer.render(scene, camera)
 		});
 
-		loader.load('./old_executor/scene.gltf', function(gltf){
+		loader.load('./public/old_executor/scene.gltf', function(gltf){
             let oldExecutor = gltf.scene.children[0]
 			oldExecutor.position.set(-8200,34500,68100)
 			oldExecutor.scale.set(100,100,100)
@@ -73,7 +73,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
             renderer.render(scene, camera)
 		});
 
-		loader.load('./star_wars_tie_fighter/scene.gltf', function(gltf){
+		loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
             let tieFighter = gltf.scene.children[0]
 			tieFighter.position.set(-8200,37000,69100)
 			tieFighter.scale.set(100,100,100)
@@ -93,7 +93,7 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 		// });
 
 
-		loader.load('./death_star/scene.gltf', function(gltf){
+		loader.load('./public/death_star/scene.gltf', function(gltf){
             let deathStar = gltf.scene.children[0]
 			deathStar.position.set(0,0,-25000)
 			deathStar.scale.set(5,5,5)
@@ -139,12 +139,12 @@ import { FilmPass } from './jsm/postprocessing/FilmPass.js';
 
 	
         let materialArray = [];
-        let texture_ft = new THREE.TextureLoader().load('./skybox/front.png');
-        let texture_bk = new THREE.TextureLoader().load('./skybox/back.png');
-        let texture_up = new THREE.TextureLoader().load('./skybox/top.png');
-        let texture_dn = new THREE.TextureLoader().load('./skybox/bot.png');
-        let texture_rt = new THREE.TextureLoader().load('./skybox/left.png');
-        let texture_lf = new THREE.TextureLoader().load('./skybox/right.png');
+        let texture_ft = new THREE.TextureLoader().load('./public/skybox/front.png');
+        let texture_bk = new THREE.TextureLoader().load('./public/skybox/back.png');
+        let texture_up = new THREE.TextureLoader().load('./public/skybox/top.png');
+        let texture_dn = new THREE.TextureLoader().load('./public/skybox/bot.png');
+        let texture_rt = new THREE.TextureLoader().load('./public/skybox/left.png');
+        let texture_lf = new THREE.TextureLoader().load('./public/skybox/right.png');
         materialArray.push(new THREE.MeshBasicMaterial({map: texture_ft}))
         materialArray.push(new THREE.MeshBasicMaterial({map: texture_bk}))
         materialArray.push(new THREE.MeshBasicMaterial({map: texture_up}))
