@@ -59,6 +59,13 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		
 		scene.add( dirLight, dirLight2, dirLight3 );
 
+		Number.prototype.between = function(a, b) {
+			var min = Math.min(a, b),
+			max = Math.max(a, b);
+
+			return this >= min && this <= max;
+		};
+
         loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
             let starDestroyer = gltf.scene.children[0]
 			starDestroyer.position.set(-4000,10000,1000)
@@ -243,6 +250,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 	}
 
+
+
 	function render() {
 		const delta = clock.getDelta();
 		// tieFighter.position.z -= 100
@@ -254,68 +263,21 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	}
 
 	function updateShipStats(){
-		// console.log(targetZ-camera.position.z)
 		document.getElementById("x").innerHTML = "x: " + ((targetX-camera.position.x)/-10).toFixed(1) + " m"
 		document.getElementById("y").innerHTML = "y: " + ((targetY-camera.position.y)/10).toFixed(1) + " m"
 		document.getElementById("z").innerHTML = "z: " + ((targetZ-camera.position.z)/10).toFixed(1) + " m"
-		// document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + (-34 - ( camera.rotation.x *(180/Math.PI))).toFixed(2)+ "&#176;" // opposite
+
 		let xTargetDisplay = (camera.rotation.x - targetXRotation > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.x - targetXRotation))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.x - targetXRotation) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
 		let zTargetDisplay = (camera.rotation.z  > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.z))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.z ) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
 		let yTargetDisplay = (camera.rotation.y > Math.PI/2) ? ((Math.PI + (Math.PI - (camera.rotation.y))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.y) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		// console.log(targetX-camera.position.x)
 		document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + xTargetDisplay
-		// (camera.rotation.x - targetXRotation > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.x - targetXRotation))) * (180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.x - targetXRotation) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		// console.log(camera.rotation.x - targetXRotation)
-		// console.log(camera.rotation.x - targetXRotation > Math.PI)
-		// console.log(Math.PI)
-		// console.log(camera.rotation.z)
-		// console.log(camera.rotation.y)
-		
-		// document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + ( (camera.rotation.x * (180/Math.PI)) - (targetXRotation * (180/Math.PI)) ).toFixed(2)+ "&#176;" // opposite
 		document.getElementById("roll-rotation").innerHTML = "&phi;-delta: " + zTargetDisplay
-		// + (  camera.rotation.z * (180/ Math.PI)).toFixed(2)+ "&#176;"
 		document.getElementById("yaw-rotation").innerHTML = "&psi;-delta: " + yTargetDisplay
-		// ( -camera.rotation.y * (180/ Math.PI)).toFixed(2)+ "&#176;"
-		// console.log(camera.rotation.x)
-		// console.log((camera.rotation.x - targetXRotation)/ Math.PI)
-		// console.log(camera.rotation.x * (180/Math.PI))
-		// var quaternion = new THREE.Quaternion(camera.rotation.x); // create one and reuse it
-		// quaternion.setFromUnitVectors( targetXRotation );
-		// console.log(quarternion)
-
-// 		var myVector = new THREE.Vector3(camera.rotation.x,0,0);
-// 		var targetVector = new THREE.Vector3(targetXRotation, 0, 0);
-
-// 		// console.log((myVector.x - targetVector.x) / (Math.PI/ 180))
-
-
-
-// 		var vector = new THREE.Vector3(); // create once and reuse it!
-
-// 		// console.log(camera.getWorldDirection( vector ))
-// 		// console.log(camera.rotation.x)
-// // Set starting and ending vectors
-// // var myVector = new THREE.Vector3(0.1, 1.0, 0.1);
-// // var targetVector = new THREE.Vector3(0, 0, -1);
-
-// // Normalize vectors to make sure they have a length of 1
-// // myVector.normalize();
-// // targetVector.normalize();
-
-// // Create a quaternion, and apply starting, then ending vectors
-// var quaternion = new THREE.Quaternion();
-// quaternion.setFromUnitVectors(myVector, targetVector);
-
-// // // Quaternion now has rotation data within it. 
-// // // We'll need to get it out with a THREE.Euler()
-// var euler = new THREE.Euler();
-// euler.setFromQuaternion(quaternion);
-// console.log(euler.toArray()); 
-
-
+	
 		document.getElementById("pitch-speed").innerHTML = "Pitch: " + (controls.moveState.pitch / 21).toFixed(3) + " &#176/s"
 		document.getElementById("roll-speed").innerHTML = "Roll: " + (controls.moveState.roll / 21).toFixed(3) + " &#176/s"
 		document.getElementById("yaw-speed").innerHTML = "Yaw: " + (controls.moveState.yaw / 21).toFixed(3) + " &#176/s"
+
 		document.getElementById("forward-speed").innerHTML = "Forward-speed: " + (controls.moveState.forwardBack /.46).toFixed(2)+ " m/s"
 		document.getElementById("left-right-speed").innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight /.46).toFixed(2)+ " m/s"
 		document.getElementById("up-down-speed").innerHTML = "Up-Down-speed: " + (controls.moveState.upDown /.46).toFixed(2)+ " m/s"
@@ -323,7 +285,20 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)
 		// console.log(controls.moveState)
-		
+		if ((targetZ-camera.position.z).between(-100, 100)  //between 1.0 m or 10.m for now, probably do 10 m for y and z axis cuz the circle width
+			&& (targetY-camera.position.y).between(-100, 100)
+			&& (targetX-camera.position.x).between(-100, 100)
+			&& 	(camera.rotation.x - targetXRotation).between(-0.00355, 0.00355) //this is .2 now, should it be .02?
+			&& (camera.rotation.y).between(-0.00355, 0.00355) 
+			&& (camera.rotation.z).between(-0.00355, 0.00355)
+			&& (controls.moveState.forwardBack).between(-1, 1) //this is less than 3 m/s
+			&& (controls.moveState.upDown).between(-1, 1)
+			&& (controls.moveState.leftRight).between(-1, 1)
+
+		)console.log("WIN")
+			// console.log(targetY-camera.position.y)
+
+			// console.log(controls.moveState.forwardBack)
 	}
 
 		// let xStat = document.getElementById("x").innerHTML 
