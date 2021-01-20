@@ -31,7 +31,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	const textureLoader = new THREE.TextureLoader();
 	// const aPlanet = new THREE.Vector3();
 	const clock = new THREE.Clock();
-	let loader = new GLTFLoader();  
+	let loader = new GLTFLoader();   
 
 	let shipUpdateCounter = 0
 	init();
@@ -43,9 +43,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		
 		camera = new THREE.PerspectiveCamera( 25, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 1000000 );
 		camera.position.set(-9000,40000,90000)
-		// camera.rotation.x = -15 * Math.PI/180
-		// camera.rotation.y = -4 * Math.PI/180
-		// camera.rotation.z = -6 * Math.PI/180
+		camera.rotation.x = -15 * Math.PI/180
+		camera.rotation.y = -4 * Math.PI/180
+		camera.rotation.z = -6 * Math.PI/180
 		// console.log("cam x " + camera.rotation.x)
 		// console.log("cam y " + camera.rotation.y)
 		// console.log("cam z " + camera.rotation.z)
@@ -61,8 +61,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
         loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
             let starDestroyer = gltf.scene.children[0]
-			starDestroyer.position.set(-2000,8000,-9000)
-			starDestroyer.scale.set(2,2,2)
+			starDestroyer.position.set(-4000,10000,1000)
+			starDestroyer.scale.set(6,6,6)
             scene.add(starDestroyer)
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
@@ -100,8 +100,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 		loader.load('./public/death_star/scene.gltf', function(gltf){
             let deathStar = gltf.scene.children[0]
-			deathStar.position.set(0,0,-25000)
-			deathStar.scale.set(5,5,5)
+			deathStar.position.set(0,-4700,-33200)
+			deathStar.scale.set(30,30,30)
             scene.add(deathStar)
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
@@ -119,9 +119,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		let deathCircle = new THREE.LineLoop( circleGeometry, circleMaterial ) 
 		deathCircle.position.set(-20,530,-24040)
 		deathCircle.rotation.x = -26 * Math.PI/180
-		console.log("x " + (deathCircle.rotation.x))
-		console.log("y " + (deathCircle.rotation.y))
-		console.log("z " + (deathCircle.rotation.z))
+		// console.log("x " + (deathCircle.rotation.x))
+		// console.log("y " + (deathCircle.rotation.y))
+		// console.log("z " + (deathCircle.rotation.z))
 
 
     	let circle2Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
@@ -179,9 +179,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		
 		controls = new FlyControls( camera, renderer.domElement );
         // controls.dispose.mousemove
-		controls.movementSpeed = 100;
+		controls.movementSpeed = 25;  //25
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 10000;
+		controls.rollSpeed = Math.PI / 10000; //10000
 		controls.autoForward = false;
 		// controls.dragToLook = true;
 
@@ -260,7 +260,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		document.getElementById("z").innerHTML = "z: " + ((targetZ-camera.position.z)/10).toFixed(1) + " m"
 		// document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + (-34 - ( camera.rotation.x *(180/Math.PI))).toFixed(2)+ "&#176;" // opposite
 		let xTargetDisplay = (camera.rotation.x - targetXRotation > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.x - targetXRotation))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.x - targetXRotation) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-
+		let zTargetDisplay = (camera.rotation.z  > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.z))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.z ) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
+		let yTargetDisplay = (camera.rotation.y > Math.PI/2) ? ((Math.PI + (Math.PI - (camera.rotation.y))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.y) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
+		// console.log(targetX-camera.position.x)
 		document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + xTargetDisplay
 		// (camera.rotation.x - targetXRotation > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.x - targetXRotation))) * (180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.x - targetXRotation) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
 		// console.log(camera.rotation.x - targetXRotation)
@@ -270,8 +272,10 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		// console.log(camera.rotation.y)
 		
 		// document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + ( (camera.rotation.x * (180/Math.PI)) - (targetXRotation * (180/Math.PI)) ).toFixed(2)+ "&#176;" // opposite
-		document.getElementById("roll-rotation").innerHTML = "&phi;-delta: " + (  camera.rotation.z * (180/ Math.PI)).toFixed(2)+ "&#176;"
-		document.getElementById("yaw-rotation").innerHTML = "&psi;-delta: " + ( -camera.rotation.y * (180/ Math.PI)).toFixed(2)+ "&#176;"
+		document.getElementById("roll-rotation").innerHTML = "&phi;-delta: " + zTargetDisplay
+		// + (  camera.rotation.z * (180/ Math.PI)).toFixed(2)+ "&#176;"
+		document.getElementById("yaw-rotation").innerHTML = "&psi;-delta: " + yTargetDisplay
+		// ( -camera.rotation.y * (180/ Math.PI)).toFixed(2)+ "&#176;"
 		// console.log(camera.rotation.x)
 		// console.log((camera.rotation.x - targetXRotation)/ Math.PI)
 		// console.log(camera.rotation.x * (180/Math.PI))
@@ -309,12 +313,12 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 // console.log(euler.toArray()); 
 
 
-		document.getElementById("pitch-speed").innerHTML = "Pitch: " + (controls.moveState.pitch / 10).toFixed(2) + " m/s"
-		document.getElementById("roll-speed").innerHTML = "Roll: " + (controls.moveState.roll / 10).toFixed(2) + " m/s"
-		document.getElementById("yaw-speed").innerHTML = "Yaw: " + (controls.moveState.yaw / 10).toFixed(2) + " m/s"
-		document.getElementById("forward-speed").innerHTML = "Forward-speed: " + (controls.moveState.forwardBack / 10).toFixed(2)+ " m/s"
-		document.getElementById("left-right-speed").innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight / 10).toFixed(2)+ " m/s"
-		document.getElementById("up-down-speed").innerHTML = "Up-Down-speed: " + (controls.moveState.upDown / 10).toFixed(2)+ " m/s"
+		document.getElementById("pitch-speed").innerHTML = "Pitch: " + (controls.moveState.pitch / 21).toFixed(3) + " &#176/s"
+		document.getElementById("roll-speed").innerHTML = "Roll: " + (controls.moveState.roll / 21).toFixed(3) + " &#176/s"
+		document.getElementById("yaw-speed").innerHTML = "Yaw: " + (controls.moveState.yaw / 21).toFixed(3) + " &#176/s"
+		document.getElementById("forward-speed").innerHTML = "Forward-speed: " + (controls.moveState.forwardBack /.46).toFixed(2)+ " m/s"
+		document.getElementById("left-right-speed").innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight /.46).toFixed(2)+ " m/s"
+		document.getElementById("up-down-speed").innerHTML = "Up-Down-speed: " + (controls.moveState.upDown /.46).toFixed(2)+ " m/s"
 		
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)

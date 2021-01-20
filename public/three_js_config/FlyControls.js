@@ -292,7 +292,9 @@ var FlyControls = function ( object, domElement ) {
 		this.rotationVector.x = ( this.moveState.pitch);
 		this.rotationVector.y = ( this.moveState.yaw);
 		this.rotationVector.z = ( this.moveState.roll);
-
+		// if (this.moveState.upDown !== 0 && this.moveState.pitch !== 0) this.moveVector.y = ( - this.moveState.yaw);
+		// this.moveVector.y = ( this.moveState.pitch);
+		// this.moveVector.z = ( - this.moveState.roll);
 		//console.log( 'rotate:', [ this.rotationVector.x, this.rotationVector.y, this.rotationVector.z ] );
 
 	};
