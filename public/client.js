@@ -10,7 +10,10 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 // import {renderShipControls} from '/ship_controls.js'
 	
 
-
+	let pivot
+	let pivot2
+	let pivot3
+	let pivot4
     // const radius = 6371;
 	// const tilt = 0.5;
 	const targetX= -20
@@ -32,7 +35,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	// const aPlanet = new THREE.Vector3();
 	const clock = new THREE.Clock();
 	let loader = new GLTFLoader();   
-
+	
 	let shipUpdateCounter = 0
 	init();
 	animate();
@@ -66,18 +69,19 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			return this >= min && this <= max;
 		};
 
-        loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
-            let starDestroyer = gltf.scene.children[0]
-			starDestroyer.position.set(-4000,10000,1000)
-			starDestroyer.scale.set(6,6,6)
-            scene.add(starDestroyer)
+        loader.load('./public/low-star-destroyer/scene.gltf', function(gltf){
+            let lowDestroyer = gltf.scene.children[0]
+			lowDestroyer.position.set(-5000,9000,1000)
+			lowDestroyer.scale.set(30,30,30)
+			lowDestroyer.rotation.z = 15 * Math.PI/180
+            scene.add(lowDestroyer)
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
 		});
 
 		loader.load('./public/old_executor/scene.gltf', function(gltf){
             let oldExecutor = gltf.scene.children[0]
-			oldExecutor.position.set(-8200,34500,68100)
+			oldExecutor.position.set(-9000,36000,77100)
 			oldExecutor.scale.set(100,100,100)
 			// oldExecutor.domElement.style.position = 'absolute';
             scene.add(oldExecutor)
@@ -85,15 +89,107 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
             renderer.render(scene, camera)
 		});
 
-		loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
-            let tieFighter = gltf.scene.children[0]
-			tieFighter.position.set(-8200,37000,69100)
-			tieFighter.scale.set(100,100,100)
-			// tieFighter.domElement.style.position = 'absolute';
-            scene.add(tieFighter)
-            // renderer.render(scene, tieFighter)
-            renderer.render(scene, camera, tieFighter.domElement)
-		});
+	
+
+			loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
+				let tieFighter = gltf.scene.children[0]
+				tieFighter.position.set(15200, 0, 0)
+				tieFighter.scale.set(80, 80, 80)
+				// tieFighter.domElement.style.position = 'absolute';
+				pivot = new THREE.Object3D();
+				pivot.position.set(0,-4700,-33200)
+				pivot.add(tieFighter);
+
+				// //Move object away from pivot
+				// tieFighter.position.set(new THREE.Vector3(5,0,0));
+				// scene.add(tieFighter)
+				//rotate the object 90 degrees around pivot
+				// pivot.rotation.y = Math.PI / 2;
+				scene.add(pivot)
+				// // renderer.render(scene, pivot)
+				renderer.render(scene, camera, pivot.domElement)
+			});
+
+			loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
+				let tieFighter2 = gltf.scene.children[0]
+				tieFighter2.position.set(11500, 2500,7000)
+				tieFighter2.scale.set(80, 80, 80)
+				// tieFighter.domElement.style.position = 'absolute';
+				// pivot = new THREE.Object3D();
+				// pivot.position.set(0,-4700,-33200)
+				pivot.add(tieFighter2);
+
+				// //Move object away from pivot
+				// tieFighter.position.set(new THREE.Vector3(5,0,0));
+				// scene.add(tieFighter)
+				//rotate the object 90 degrees around pivot
+				// pivot.rotation.y = Math.PI / 2;
+				// scene.add(pivot)
+				// // // renderer.render(scene, pivot)
+				// renderer.render(scene, camera, pivot.domElement)
+			});
+
+
+			loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
+				let tieFighter3 = gltf.scene.children[0]
+				tieFighter3.position.set(7900, 10500, 0)
+				tieFighter3.scale.set(80, 80, 80)
+				// tieFighter.domElement.style.position = 'absolute';
+				pivot2 = new THREE.Object3D();
+				pivot2.position.set(0,-4700,-33200)
+				pivot2.add(tieFighter3);
+
+				// //Move object away from pivot
+				// tieFighter.position.set(new THREE.Vector3(5,0,0));
+				// scene.add(tieFighter)
+				//rotate the object 90 degrees around pivot
+				// pivot.rotation.y = Math.PI / 2;
+				scene.add(pivot2)
+				// // renderer.render(scene, pivot)
+				// renderer.render(scene, camera, pivot.domElement)
+			});
+
+			
+
+			loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
+				let starDestroyer = gltf.scene.children[0]
+				starDestroyer.position.set(12000, 20000, -10000)
+				starDestroyer.scale.set(18, 18, 18)
+				starDestroyer.rotation.z = 45 * Math.PI/180
+				// starDestroyer.domElement.style.position = 'absolute';
+				pivot3 = new THREE.Object3D();
+				pivot3.position.set(0,-4700,-37200)
+				pivot3.add(starDestroyer);
+
+				// //Move object away from pivot
+				// tieFighter.position.set(new THREE.Vector3(5,0,0));
+				// scene.add(tieFighter)
+				//rotate the object 90 degrees around pivot
+				// pivot.rotation.y = Math.PI / 2;
+				scene.add(pivot3)
+				// // renderer.render(scene, pivot)
+				renderer.render(scene, camera, pivot3.domElement)
+			});
+
+			loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
+				let starDestroyer2 = gltf.scene.children[0]
+				starDestroyer2.position.set(-22000, 1000, 22000)
+				starDestroyer2.scale.set(11, 11, 11)
+				starDestroyer2.rotation.z = 45 * Math.PI/180
+				// starDestroyer2.domElement.style.position = 'absolute';
+				pivot4 = new THREE.Object3D();
+				pivot4.position.set(0,-4700,-37200)
+				pivot4.add(starDestroyer2);
+
+				// //Move object away from pivot
+				// tieFighter.position.set(new THREE.Vector3(5,0,0));
+				// scene.add(tieFighter)
+				//rotate the object 90 degrees around pivot
+				// pivot.rotation.y = Math.PI / 2;
+				scene.add(pivot4)
+				// // renderer.render(scene, pivot)
+				renderer.render(scene, camera, pivot4.domElement)
+			});
 
 		//     loader.load('./star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
         //     let starDestroyerCol = gltf.scene.children[0]
@@ -153,7 +249,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		death4Circle.rotation.x = -26 * Math.PI/180
 		scene.add(deathCircle, death2Circle, death3Circle, death4Circle);
 
-	
+		
         let materialArray = [];
         let texture_ft = new THREE.TextureLoader().load('./public/skybox/front.png');
         let texture_bk = new THREE.TextureLoader().load('./public/skybox/back.png');
@@ -221,7 +317,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		composer = new EffectComposer( renderer );
 		composer.addPass( renderModel );
 		composer.addPass( effectFilm );
-	}
+}
 
 	// function flashControls(event, text) {
 	// 	var code = event.keyCode || event.which;
@@ -320,9 +416,23 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	
 
 	function animate() {
+		// console.log(scene)
+		// console.log(pivot)
+		
 		requestAnimationFrame( animate );
+		// death3Circle.rotation.x += 25// 
+		if (pivot) pivot.rotation.y += -.015
+		if (pivot2) {
+			pivot2.rotation.y += -.006
+			pivot2.rotation.z += .0015
+		}
+		if (pivot3) {
+			pivot3.rotation.y -= .0002
+		}
+		if (pivot4) pivot4.rotation.y += .0003
 		render();
 		// stats.update();
+		// console.log(death3Circle)
 		
 		shipUpdateCounter += 1
 		if (shipUpdateCounter === 10){
@@ -339,6 +449,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	function render() {
 		const delta = clock.getDelta();
 		// tieFighter.position.z -= 100
+		// domElement.pivot.rotation.y = Math.PI / 2;
 		controls.update( delta );
 		composer.render( delta );
 		// tieFighter.position.z -= 1000
