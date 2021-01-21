@@ -1,6 +1,6 @@
 body {
   font-family: monospace;
-  color: black;
+  color: white;
 }
 
 .modal {
@@ -154,7 +154,7 @@ body {
   font-weight: 600;
   line-height: 25px;
   font-size: small;
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(24, 26, 27, 0.65);
   padding-left: 4px;
   padding-right: 4px;
   border-radius: 5px;
@@ -166,7 +166,7 @@ body {
   font-weight: 600;
   line-height: 25px;
   font-size: small;
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(24, 26, 27, 0.65);
   padding-left: 4px;
   padding-right: 4px;
   border-radius: 5px;
@@ -178,7 +178,7 @@ body {
   font-weight: 600;
   line-height: 25px;
   font-size: small;
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(24, 26, 27, 0.65);
   padding-left: 4px;
   padding-right: 4px;
   border-radius: 5px;
@@ -187,7 +187,7 @@ body {
 #xyz {
    top: 50%;
    left: 28%;
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: rgba(24, 26, 27, 0.65);
   padding-left: 4px;
   padding-right: 4px;
   border-radius: 5px;
@@ -196,7 +196,7 @@ body {
 #pitch-div {
   bottom: 20%;
   left: 47%;
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: rgba(24, 26, 27, 0.65);
   padding-left: 4px;
   padding-right: 4px;
   border-radius: 5px;
@@ -215,7 +215,7 @@ body {
 }
 
 #yaw-div {
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(24, 26, 27, 0.65);
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 5px;
@@ -234,16 +234,17 @@ body {
 }
 
 #left-key, #right-key, #up-key, #down-key, #q-key, #e-key, #a-key, #d-key, #w-key, #s-key, #r-key, #f-key{
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(24, 26, 27, 0.5);
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 5px;
     margin: 3px;
     font-size: x-large;
+    border: 1px grey;
 }
 
 #roll-div {
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(24, 26, 27, 0.65);
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 5px;
