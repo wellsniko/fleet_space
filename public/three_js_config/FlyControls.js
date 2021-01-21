@@ -56,16 +56,16 @@ var FlyControls = function ( object, domElement ) {
 
 		switch ( event.keyCode ) {
 
-			case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
+			// case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
 
-			case 82: /*W*/ this.moveState.forwardBack += .5; break;
-			case 70: /*S*/ this.moveState.forwardBack -= .5; break;
+			case 82: /*R*/ this.moveState.forwardBack += .5; break;
+			case 70: /*F*/ this.moveState.forwardBack -= .5; break;
 
 			case 65: /*A*/ this.moveState.leftRight += .5; break;
 			case 68: /*D*/ this.moveState.leftRight -= .5; break;
 
-			case 87: /*R*/ this.moveState.upDown += .5; break;
-			case 83: /*F*/ this.moveState.upDown -= .5; break;
+			case 87: /*W*/ this.moveState.upDown += .5; break;
+			case 83: /*S*/ this.moveState.upDown -= .5; break;
 
 			case 38: /*up*/ this.moveState.pitch += .5; break;
 			case 40: /*down*/ this.moveState.pitch -= .5; break;

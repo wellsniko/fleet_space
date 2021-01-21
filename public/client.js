@@ -213,7 +213,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		// let helloThere = "hello there"
 		// helloThere.domElement = renderer.domElement
 		// // document.body.appendChild(helloThere.dom)
-
+		window.addEventListener( 'keydown', flashControls, false );
 		window.addEventListener( 'resize', onWindowResize, false );
 
 		const renderModel = new RenderPass( scene, camera );
@@ -222,6 +222,90 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		composer.addPass( renderModel );
 		composer.addPass( effectFilm );
 	}
+
+	// function flashControls(event, text) {
+	// 	var code = event.keyCode || event.which;
+	// 	if (code == 38 || code == 40) {
+	// 		document.getElementById('pitch-div').style.background = "black";
+	// 		setTimeout(function() {
+	// 			document.getElementById('pitch-div').style.background = null     
+	// 		}, 100);
+
+	// 	}
+	// }
+
+	// function flashControls(event, text) {
+
+	// 	let pressedKey 
+	// 		switch ( event.keyCode ) {
+
+
+	// 		case 82: /*R*/ pressedKey = "forward-speed"; break; 
+	// 		case 70: /*F*/ pressedKey = "forward-speed"; break; 
+
+	// 		case 65: /*A*/ pressedKey = "left-right-speed"; break; 
+	// 		case 68: /*D*/ pressedKey = "left-right-speed"; break; 
+
+	// 		case 87: /*W*/ pressedKey = "up-down-speed"; break; 
+	// 		case 83: /*S*/ pressedKey = "up-down-speed"; break; 
+
+	// 		case 38: /*up*/ pressedKey = "pitch-div"; break; 
+	// 		case 40: /*down*/ pressedKey = "pitch-div"; break; 
+
+	// 		case 37: /*left*/ pressedKey = "yaw-div"; break; 
+	// 		case 39: /*right*/ pressedKey = "yaw-div"; break; 
+
+	// 		case 81: /*Q*/ pressedKey = "roll-div"; break; 
+	// 		case 69: /*E*/ pressedKey = "roll-div"; break; 
+	// 	}
+
+	// 	if (pressedKey){
+	// 		document.getElementById(pressedKey).style.background = "black";
+	// 		setTimeout(function() {
+	// 			document.getElementById(pressedKey).style.background = null     
+	// 		}, 100);
+	// 	}
+
+	
+	// }
+
+		function flashControls(event, text) {
+
+		let pressedKey 
+			switch ( event.keyCode ) {
+
+
+			case 82: /*R*/ pressedKey = "r-key"; break; 
+			case 70: /*F*/ pressedKey = "f-key"; break; 
+
+			case 65: /*A*/ pressedKey = "a-key"; break; 
+			case 68: /*D*/ pressedKey = "d-key"; break; 
+
+			case 87: /*W*/ pressedKey = "w-key"; break; 
+			case 83: /*S*/ pressedKey = "s-key"; break; 
+
+			case 38: /*up*/ pressedKey = "up-key"; break; 
+			case 40: /*down*/ pressedKey = "down-key"; break; 
+
+			case 37: /*left*/ pressedKey = "left-key"; break; 
+			case 39: /*right*/ pressedKey = "right-key"; break; 
+
+			case 81: /*Q*/ pressedKey = "q-key"; break; 
+			case 69: /*E*/ pressedKey = "e-key"; break; 
+		}
+
+		if (pressedKey){
+			document.getElementById(pressedKey).style.background = "black";
+			document.getElementById(pressedKey).style.color = "white";
+			setTimeout(function() {
+				document.getElementById(pressedKey).style.background = null;   
+				document.getElementById(pressedKey).style.color = null; 
+			}, 100);
+		}
+
+	
+	}
+
 
 	function onWindowResize() {
 		SCREEN_HEIGHT = window.innerHeight;

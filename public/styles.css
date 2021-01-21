@@ -1,5 +1,6 @@
 body {
   font-family: monospace;
+  color: black;
 }
 
 .modal {
@@ -79,14 +80,14 @@ body {
 
 
 #x {
-  color: white;
+  /* color: white; */
   font-weight: 600;
   line-height: 15px;
   font-size: small;
 }
 
 #y {
-  color: white;
+  /* color: white; */
   font-weight: 600;
     line-height: 15px;
   font-size: small;
@@ -94,14 +95,14 @@ body {
 
 
 #z {
-  color: white;
+  /* color: white; */
   font-weight: 600;
     line-height: 15px;
   font-size: small;
 }
 
 #pitch-rotation {
-    color: white;
+    /* color: white; */
   font-weight: 600;
   line-height: 20px;
   font-size: 15px;
@@ -111,14 +112,14 @@ body {
 
 #roll-rotation {
 
-    color: white;
+    /* color: white; */
   font-weight: 600;
   line-height: 20px;
   font-size: 15px;
 }
 #yaw-rotation {
 
-    color: white;
+    /* color: white; */
   font-weight: 600;
   line-height: 20px;
   font-size: 15px;
@@ -127,28 +128,29 @@ body {
 
 
 #pitch-speed{
-    color: white;
+    /* color: white; */
   font-weight: 400;
   line-height: 20px;
   font-size: small;
 }
 
 #roll-speed{
-    color: white;
+    /* color: white; */
   font-weight: 400;
   line-height: 20px;
   font-size: small;
 }
 
 #yaw-speed{
-    color: white;
+    /* color: white; */
   font-weight: 400;
   line-height: 20px;
   font-size: small;
 }
 
 #forward-speed{
-    color: white;
+    /* color: white; */
+     /* width: 33%; */
   font-weight: 600;
   line-height: 25px;
   font-size: small;
@@ -159,7 +161,8 @@ body {
 }
 
 #left-right-speed{
-    color: white;
+    /* color: white; */
+    /* width: 33%; */
   font-weight: 600;
   line-height: 25px;
   font-size: small;
@@ -170,7 +173,8 @@ body {
 }
 
 #up-down-speed{
-  color: white;
+  /* color: white; */
+   /* width: 33%; */
   font-weight: 600;
   line-height: 25px;
   font-size: small;
@@ -199,29 +203,78 @@ body {
  /* clip-path: polygon(0 0, 100% 0, 84% 100%, 16% 100%); */
 }
 
+#pitch-div-2 {
+    bottom: 20%;
+  left: 47%;
+}
+
+#up-down-keys, #w-s-keys, #r-f-keys {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
 #yaw-div {
-  top: 50%;
-  right: 30%;
     background-color: rgba(255, 255, 255, 0.65);
-  padding-left: 4px;
-  padding-right: 4px;
-  border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 5px;
+}
+
+#yaw-div-2{
+    top: 50%;
+    right: 30%;
+}
+
+#left-right-keys, #q-e-keys, #a-d-keys {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#left-key, #right-key, #up-key, #down-key, #q-key, #e-key, #a-key, #d-key, #w-key, #s-key, #r-key, #f-key{
+      background-color: rgba(255, 255, 255, 0.5);
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 5px;
+    margin: 3px;
+    font-size: x-large;
 }
 
 #roll-div {
-  top: 20%;
-  left: 47%;
     background-color: rgba(255, 255, 255, 0.65);
-  padding-left: 4px;
-  padding-right: 4px;
-  border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 5px;
 }
+
+#roll-div-2 {
+    top: 20%;
+    left: 47%;
+}
+
+
 
 #speed-div {
   display: flex;
   flex-direction: row;
   bottom: 0;
-  left: 25%;
-  justify-content: space-between;
-  width: 50%;
+  /* left: 25%; */
+  justify-content: space-around;
+  width: 100%;
+}
+
+#speed-div-2 {
+    display: flex;
+    flex-direction: row;
+    bottom: 25px;
+    /* left: 25%; */
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+#w-s-keys, #r-s-keys {
+  margin-bottom: 5px;
 }
