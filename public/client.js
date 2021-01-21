@@ -267,20 +267,53 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		document.getElementById("y").innerHTML = "y: " + ((targetY-camera.position.y)/10).toFixed(1) + " m"
 		document.getElementById("z").innerHTML = "z: " + ((targetZ-camera.position.z)/10).toFixed(1) + " m"
 
+		let pitchColor = "rgb(211, 46, 46)"
 		let xTargetDisplay = (camera.rotation.x - targetXRotation > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.x - targetXRotation))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.x - targetXRotation) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		let zTargetDisplay = (camera.rotation.z  > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.z))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.z ) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		let yTargetDisplay = (camera.rotation.y > Math.PI/2) ? ((Math.PI + (Math.PI - (camera.rotation.y))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.y) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		document.getElementById("pitch-rotation").innerHTML = "&theta;-delta: " + xTargetDisplay
-		document.getElementById("roll-rotation").innerHTML = "&phi;-delta: " + zTargetDisplay
-		document.getElementById("yaw-rotation").innerHTML = "&psi;-delta: " + yTargetDisplay
-	
-		document.getElementById("pitch-speed").innerHTML = "Pitch: " + (controls.moveState.pitch / 21).toFixed(3) + " &#176/s"
-		document.getElementById("roll-speed").innerHTML = "Roll: " + (controls.moveState.roll / 21).toFixed(3) + " &#176/s"
-		document.getElementById("yaw-speed").innerHTML = "Yaw: " + (controls.moveState.yaw / 21).toFixed(3) + " &#176/s"
+		if ((camera.rotation.x - targetXRotation).between(-0.00355, 0.00355)) pitchColor = "blue"
+		let pitchRotation = document.getElementById("pitch-rotation")
+		pitchRotation.innerHTML = "&theta;-delta: " + xTargetDisplay
+		pitchRotation.style.color = pitchColor
 
-		document.getElementById("forward-speed").innerHTML = "Forward-speed: " + (controls.moveState.forwardBack /.46).toFixed(2)+ " m/s"
-		document.getElementById("left-right-speed").innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight /.46).toFixed(2)+ " m/s"
-		document.getElementById("up-down-speed").innerHTML = "Up-Down-speed: " + (controls.moveState.upDown /.46).toFixed(2)+ " m/s"
+		let rollColor = "rgb(211, 46, 46)"
+		let zTargetDisplay = (camera.rotation.z  > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.z))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.z ) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
+		if ((camera.rotation.z).between(-0.00355, 0.00355)) rollColor = "blue"
+		let rollRotation = document.getElementById("roll-rotation")
+		rollRotation.innerHTML = "&phi;-delta: " + zTargetDisplay
+		rollRotation.style.color = rollColor
+
+		let yawColor = "rgb(211, 46, 46)"
+		let yTargetDisplay = (camera.rotation.y > Math.PI/2) ? ((Math.PI + (Math.PI - (camera.rotation.y))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.y) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
+		if ((camera.rotation.y).between(-0.00355, 0.00355)) yawColor = "blue"
+		let yawRotation = document.getElementById("yaw-rotation")
+		yawRotation.innerHTML = "&psi;-delta: " + yTargetDisplay
+		yawRotation.style.color = yawColor
+	
+		let pitchSpeed = document.getElementById("pitch-speed")
+		pitchSpeed.innerHTML = "Pitch: " + (controls.moveState.pitch / 21).toFixed(3) + " &#176/s"
+
+		let rollSpeed = document.getElementById("roll-speed")
+		rollSpeed.innerHTML = "Roll: " + (controls.moveState.roll / 21).toFixed(3) + " &#176/s"
+
+		let yawSpeed = document.getElementById("yaw-speed")
+		yawSpeed.innerHTML = "Yaw: " + (controls.moveState.yaw / 21).toFixed(3) + " &#176/s"
+
+		let forwardColor = "rgb(211, 46, 46)"
+		if ((controls.moveState.forwardBack).between(-1, 1)) forwardColor = "blue"
+		let forwardSpeed = document.getElementById("forward-speed")
+		forwardSpeed.innerHTML = "Forward-speed: " + (controls.moveState.forwardBack /.46).toFixed(2)+ " m/s"
+		forwardSpeed.style.color = forwardColor;
+
+		let leftRightColor = "rgb(211, 46, 46)"
+		if ((controls.moveState.leftRight).between(-1, 1)) leftRightColor = "blue"
+		let leftRightSpeed = document.getElementById("left-right-speed")
+		leftRightSpeed.innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight /.46).toFixed(2)+ " m/s"
+		leftRightSpeed.style.color = leftRightColor;
+
+		let upDownColor = "rgb(211, 46, 46)"
+		if ((controls.moveState.upDown).between(-1, 1)) upDownColor = "blue"
+		let upDownSpeed = document.getElementById("up-down-speed")
+		upDownSpeed.innerHTML = "Up-Down-speed: " + (controls.moveState.upDown /.46).toFixed(2)+ " m/s"
+		upDownSpeed.style.color = upDownColor;
 		
 		// statX.innerHTML = "X-axis delta:" + (targetX-camera.position.x)
 		// console.log(statX)

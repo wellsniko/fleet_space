@@ -1,3 +1,7 @@
+body {
+  font-family: monospace;
+}
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -100,7 +104,9 @@
     color: white;
   font-weight: 600;
   line-height: 20px;
-  font-size: small;
+  font-size: 15px;
+  /* background-color: rgba(255, 255, 255, 0.5) */
+  /* color: rgb(211, 46, 46) */
 }
 
 #roll-rotation {
@@ -108,14 +114,14 @@
     color: white;
   font-weight: 600;
   line-height: 20px;
-  font-size: small;
+  font-size: 15px;
 }
 #yaw-rotation {
 
     color: white;
   font-weight: 600;
   line-height: 20px;
-  font-size: small;
+  font-size: 15px;
 }
 
 
@@ -123,63 +129,92 @@
 #pitch-speed{
     color: white;
   font-weight: 400;
-  line-height: 15px;
+  line-height: 20px;
   font-size: small;
 }
 
 #roll-speed{
     color: white;
   font-weight: 400;
-  line-height: 15px;
+  line-height: 20px;
   font-size: small;
 }
 
 #yaw-speed{
     color: white;
   font-weight: 400;
-  line-height: 25px;
+  line-height: 20px;
   font-size: small;
 }
 
 #forward-speed{
     color: white;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 25px;
   font-size: small;
+    background-color: rgba(255, 255, 255, 0.65);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
 }
 
 #left-right-speed{
     color: white;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 25px;
   font-size: small;
+    background-color: rgba(255, 255, 255, 0.65);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
 }
 
 #up-down-speed{
   color: white;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 25px;
   font-size: small;
+    background-color: rgba(255, 255, 255, 0.65);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
 }
 
 #xyz {
    top: 50%;
    left: 28%;
+  background-color: rgba(255, 255, 255, 0.65);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
 }
 
 #pitch-div {
   bottom: 20%;
   left: 47%;
+  background-color: rgba(255, 255, 255, 0.65);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
+ /* clip-path: polygon(0 0, 100% 0, 84% 100%, 16% 100%); */
 }
 
 #yaw-div {
   top: 50%;
   right: 30%;
+    background-color: rgba(255, 255, 255, 0.65);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
 }
 
 #roll-div {
   top: 20%;
   left: 47%;
+    background-color: rgba(255, 255, 255, 0.65);
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
 }
 
 #speed-div {
