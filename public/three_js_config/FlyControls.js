@@ -358,8 +358,10 @@ var FlyControls = function ( object, domElement ) {
 	// this.domElement.addEventListener( 'mousemove', _mousemove, false );
 	// this.domElement.addEventListener( 'mousedown', _mousedown, false );
 	// this.domElement.addEventListener( 'mouseup', _mouseup, false );
-
+	// if (document.getElementById("myModal").style.display === "none") 
+	
 	window.addEventListener( 'keydown', _keydown, false );
+	
 	// window.addEventListener( 'keyup', _keyup, false );
 
 	this.updateMovementVector();

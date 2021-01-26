@@ -39,9 +39,11 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	let shipUpdateCounter = 0
 
 	
-
+	let myModal = document.getElementById("myModal")
 
 	init();
+
+	
 	animate();
 	// renderShipStats()
 	
@@ -450,9 +452,11 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	function animate() {
 		// console.log(scene)
 		// console.log(pivot)
+		// console.log(document.getElementById("myModal").style.display === "none") 
 		
 		requestAnimationFrame( animate );
 		// death3Circle.rotation.x += 25// 
+		if (document.getElementById("myModal").style.display === "none") {
 		if (pivot) pivot.rotation.y += -.015
 		if (pivot2) {
 			pivot2.rotation.y += -.006
@@ -473,7 +477,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			
 		}
 		
-
+	}
 	}
 
 
