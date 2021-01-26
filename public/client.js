@@ -559,7 +559,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			&& (controls.moveState.upDown).between(-1, 1)
 			&& (controls.moveState.leftRight).between(-1, 1)
 
-		)console.log("WIN")
+		){document.getElementById("win-game").style.display = block} 
 			// console.log(targetY-camera.position.y)
 
 			// console.log(controls.moveState.forwardBack)
