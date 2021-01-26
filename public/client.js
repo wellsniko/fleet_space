@@ -203,7 +203,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 		loader.load('./public/death_star/scene.gltf', function(gltf){
             let deathStar = gltf.scene.children[0]
-			deathStar.position.set(0,-4700,-33200)
+			deathStar.position.set(0,-4550,-33200)
 			deathStar.scale.set(30,30,30)
             scene.add(deathStar)
             // scene.add(gltf.scene);
@@ -391,8 +391,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		}
 
 		if (pressedKey){
-			document.getElementById(pressedKey).style.background = "black";
-			document.getElementById(pressedKey).style.color = "white";
+			document.getElementById(pressedKey).style.background = "white";
+			document.getElementById(pressedKey).style.color = "black";
 			setTimeout(function() {
 				document.getElementById(pressedKey).style.background = null;   
 				document.getElementById(pressedKey).style.color = null; 
@@ -464,21 +464,21 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 		let pitchColor = "rgb(211, 46, 46)"
 		let xTargetDisplay = (camera.rotation.x - targetXRotation > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.x - targetXRotation))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.x - targetXRotation) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		if ((camera.rotation.x - targetXRotation).between(-0.00355, 0.00355)) pitchColor = "blue"
+		if ((camera.rotation.x - targetXRotation).between(-0.00355, 0.00355)) pitchColor = "rgb(92, 209, 255)"
 		let pitchRotation = document.getElementById("pitch-rotation")
 		pitchRotation.innerHTML = "&theta;-delta: " + xTargetDisplay
 		pitchRotation.style.color = pitchColor
 
 		let rollColor = "rgb(211, 46, 46)"
 		let zTargetDisplay = (camera.rotation.z  > Math.PI) ? ((Math.PI + (Math.PI - (camera.rotation.z))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.z ) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		if ((camera.rotation.z).between(-0.00355, 0.00355)) rollColor = "blue"
+		if ((camera.rotation.z).between(-0.00355, 0.00355)) rollColor = "rgb(92, 209, 255)"
 		let rollRotation = document.getElementById("roll-rotation")
 		rollRotation.innerHTML = "&phi;-delta: " + zTargetDisplay
 		rollRotation.style.color = rollColor
 
 		let yawColor = "rgb(211, 46, 46)"
 		let yTargetDisplay = (camera.rotation.y > Math.PI/2) ? ((Math.PI + (Math.PI - (camera.rotation.y))) * -(180/Math.PI)).toFixed(2)+ "&#176" : ((camera.rotation.y) * (180/Math.PI)).toFixed(2) + "&#176;" // opposite
-		if ((camera.rotation.y).between(-0.00355, 0.00355)) yawColor = "blue"
+		if ((camera.rotation.y).between(-0.00355, 0.00355)) yawColor = "rgb(92, 209, 255)"
 		let yawRotation = document.getElementById("yaw-rotation")
 		yawRotation.innerHTML = "&psi;-delta: " + yTargetDisplay
 		yawRotation.style.color = yawColor
@@ -493,19 +493,19 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		yawSpeed.innerHTML = "Yaw: " + (controls.moveState.yaw / 21).toFixed(3) + " &#176/s"
 
 		let forwardColor = "rgb(211, 46, 46)"
-		if ((controls.moveState.forwardBack).between(-1, 1)) forwardColor = "blue"
+		if ((controls.moveState.forwardBack).between(-1, 1)) forwardColor = "rgb(92, 209, 255)"
 		let forwardSpeed = document.getElementById("forward-speed")
 		forwardSpeed.innerHTML = "Forward-speed: " + (controls.moveState.forwardBack /.46).toFixed(2)+ " m/s"
 		forwardSpeed.style.color = forwardColor;
 
 		let leftRightColor = "rgb(211, 46, 46)"
-		if ((controls.moveState.leftRight).between(-1, 1)) leftRightColor = "blue"
+		if ((controls.moveState.leftRight).between(-1, 1)) leftRightColor = "rgb(92, 209, 255)"
 		let leftRightSpeed = document.getElementById("left-right-speed")
 		leftRightSpeed.innerHTML = "Left-Right-speed: " + (controls.moveState.leftRight /.46).toFixed(2)+ " m/s"
 		leftRightSpeed.style.color = leftRightColor;
 
 		let upDownColor = "rgb(211, 46, 46)"
-		if ((controls.moveState.upDown).between(-1, 1)) upDownColor = "blue"
+		if ((controls.moveState.upDown).between(-1, 1)) upDownColor = "rgb(92, 209, 255)"
 		let upDownSpeed = document.getElementById("up-down-speed")
 		upDownSpeed.innerHTML = "Up-Down-speed: " + (controls.moveState.upDown /.46).toFixed(2)+ " m/s"
 		upDownSpeed.style.color = upDownColor;

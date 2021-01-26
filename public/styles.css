@@ -3,6 +3,10 @@ body {
   color: white;
 }
 
+#game-title {
+  margin: auto;
+}
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -14,15 +18,26 @@ body {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  /* justify-content: center; */
 }
 
 /* Modal Content/Box */
+/* .modal- */
+
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  position: relative;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 0;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 90%;
+  height:90%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  font: 12px/20px Lato,Verdana,Arial,geneva,sans-serif;
 }
 
 /* The Close Button */
@@ -45,31 +60,41 @@ body {
 .modal-header {
   padding: 2px 16px;
   background-color: black;
-  color: white;
+  color: red;
+  height: 20%;
+  display:flex;
 }
 
 /* Modal Body */
-.modal-body {padding: 2px 16px;}
+.modal-body {
+  /* padding: 2px 16px; */
+  background: black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#directions-p {
+  width: 55%;
+  margin: auto;
+  height: 20%;
+}
+
+#keys-modal {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 
 /* Modal Footer */
-.modal-footer {
+/* .modal-footer {
   padding: 2px 16px;
   background-color: red;
   color: white;
-}
+} */
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
 
 /* Add Animation */
 @keyframes animatetop {
@@ -279,3 +304,53 @@ body {
 #w-s-keys, #r-s-keys {
   margin-bottom: 5px;
 }
+
+
+
+#key-directions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#letter-1 {
+  display: flex;
+  flex-direction: row;
+}
+
+#letter-2 {
+  display: flex;
+  flex-direction: row;
+}
+
+#arrow-1 {
+    display: flex;
+    justify-content: center;
+}
+
+#arrow-2 {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+#left-key-2, #right-key-2, #up-key-2, #down-key-2, #q-key-2, #e-key-2, #a-key-2, #d-key-2, #w-key-2, #s-key-2, #r-key-2, #f-key-2{
+      background-color: rgba(114, 116, 117, 0.5);
+      padding-top: 5px;
+      padding-bottom: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 5px;
+    margin: 3px;
+    font-size: xx-large;
+    border: 1px grey;
+}
+
+
+#key-description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+

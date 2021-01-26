@@ -26,23 +26,62 @@
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <span class="close">&times;</span> -->
-                <h2>FleetSpace</h2>
+                <h1 id="game-title">FleetSpace</h1>
             </div>
             <div class="modal-body">
-                <p>This Death Star landing simulator will familiarize you with the controls of the actual Star Destroyer 
+                <p id="directions-p">This Death Star landing simulator will familiarize you with the controls of the actual Star Destroyer 
                     from Star Wars.  Successful docking is achieved when all numbers on the interface are under 0.2.
                     Movement speed should be slow and requires patience, accuracy, and precision.
                 </p>
-                <br>
-                <p>W - increase up speed <br>S - increase down speed <br>A - Increase left strafe speed <br>
-                D - increase right strafe speed <br> R - increase forward speed <br>F - increase backward speed <br>
-                Q - increase roll left speed <br> E - increase roll right speed <br>Up Arrow - Pitch Up <br> Down Arrow - Pitch Down <br>
-                Left Arrow - Yaw left <br>Right Arrow - Yaw Right</p> 
+                
+                <div id="keys-modal">
+                    <div id="key-description">
+                        <div>
+                        W - Increase up speed <br>S - Increase down speed <br>A - Increase left strafe speed <br>
+                        D - Increase right strafe speed <br> R - Increase forward speed <br>F - Increase backward speed <br>
+                        Q - Increase roll left speed <br> E - Increase roll right speed
+                        </div> 
+                        <div>
+                        &#9650; - Pitch Up<br>&#9664; - Yaw left<br>&#9660; - Pitch Down <br>
+                        &#9654; - Yaw Right
+                        </div>
+                    </div>
+                    <div id="key-directions">
+                        <div id="letter-keys">
+                            <div id="letter-1">
+                                <div id="q-key-2">Q</div>
+                                <div id="w-key-2">W</div>
+                                <div id="e-key-2">E</div>
+                                <div id="r-key-2">R</div>
+                            </div>
+                            <div id="letter-2">
+                                <div id="a-key-2">A</div>
+                                <div id="s-key-2">S</div>
+                                <div id="d-key-2">D</div>
+                                <div id="f-key-2">F</div>
+                            </div>  
+                            
+                            
+                        </div>
+                        <div id="arrow-keys">
+                            <div id="arrow-1">
+                                <div id="up-key-2">&#9650;</div>
+                            </div>
+                            <div id="arrow-2">
+                                <div id=left-key-2>&#9664;</div>
+                                <div id="down-key-2">&#9660;</div>
+                                <div id="right-key-2">&#9654;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                <button id="myBtn">Play</button>
             </div>
-            <button id="myBtn">Play</button>
-            <div class="modal-footer">
+            
+            <!-- <div class="modal-footer">
                 <h3>Modal Footer</h3>
-            </div>
+            </div> -->
         </div>
     </div>
     
