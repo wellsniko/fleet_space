@@ -6,15 +6,25 @@ var btn = document.getElementById("myBtn");
 
 btn.onclick = function() {
   modal.style.display = "none";
+      let mySong = document.getElementById("my-audio")
+	mySong.volume = 0.15;
+	// document.body.addEventListener("mousemove", function () {
+    mySong.play()
+// })
 }
 
 // span.onclick = function() {
 //   modal.style.display = "none";
 // }
-
+// let mysong
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    let mySong = document.getElementById("my-audio")
+	mySong.volume = 0.15;
+	// document.body.addEventListener("mousemove", function () {
+    mySong.play()
+// })
   }
 }
 

@@ -37,10 +37,14 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	let loader = new GLTFLoader();   
 	
 	let shipUpdateCounter = 0
+
+	
+
+
 	init();
 	animate();
 	// renderShipStats()
-
+	
 	function init() {
 		scene = new THREE.Scene();
 		
@@ -78,6 +82,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
 		});
+
+		
 
 		loader.load('./public/old_executor/scene.gltf', function(gltf){
             let oldExecutor = gltf.scene.children[0]
@@ -309,6 +315,32 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		// let helloThere = "hello there"
 		// helloThere.domElement = renderer.domElement
 		// // document.body.appendChild(helloThere.dom)
+
+		var audioButton = document.getElementById("audio-button");
+
+	// var span = document.getElementsByClassName("close")[0];
+
+		audioButton.onclick = function() {
+
+			let mySong = document.getElementById("my-audio")
+
+	
+			if (mySong.volume !== 0){
+				mySong.volume = 0
+				audioButton.innerHTML = "&#128263;"
+			} else {
+				mySong.volume = 0.15
+				audioButton.innerHTML = "&#128266;"
+			}		
+			// document.body.addEventListener("mousemove", function () {
+			// mySong.play()
+		// })
+		}
+
+
+
+
+
 		window.addEventListener( 'keydown', flashControls, false );
 		window.addEventListener( 'resize', onWindowResize, false );
 

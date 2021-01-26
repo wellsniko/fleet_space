@@ -95,14 +95,20 @@ body {
   color: white;
 } */
 
-
+:focus {outline:0 !important;}
 /* Add Animation */
 @keyframes animatetop {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
 }
 
-
+#audio-button {
+  right: 4px;
+  top: 4px;
+  background: transparent;
+  border: none;
+  font-size: 36px;
+}
 
 #x {
   /* color: white; */
