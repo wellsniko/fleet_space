@@ -19,7 +19,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	const targetX= -20
 	const targetY= 530
 	const targetZ= -24040
-	const targetXRotation = (-26 * Math.PI/180)
+	const targetXRotation = 0
 	
 	// var shipStats= document.createElement('div')
 	// shipStats.id = "ship-stats"
@@ -51,8 +51,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		scene = new THREE.Scene();
 		
 		camera = new THREE.PerspectiveCamera( 25, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 1000000 );
-		camera.position.set(-9000,40000,90000)
-		camera.rotation.x = -15 * Math.PI/180
+		camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
+		camera.rotation.x = 9 * Math.PI/180
 		camera.rotation.y = -4 * Math.PI/180
 		camera.rotation.z = -6 * Math.PI/180
 		// console.log("cam x " + camera.rotation.x)
@@ -77,9 +77,10 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
         loader.load('./public/low-star-destroyer/scene.gltf', function(gltf){
             let lowDestroyer = gltf.scene.children[0]
-			lowDestroyer.position.set(-5000,9000,1000)
+			lowDestroyer.position.set(-5000,-2000,-2000) //(-5000,9000,1000) 0, +4370, -500
 			lowDestroyer.scale.set(30,30,30)
 			lowDestroyer.rotation.z = 15 * Math.PI/180
+			lowDestroyer.rotation.x = -64 * Math.PI/180
             scene.add(lowDestroyer)
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
@@ -89,8 +90,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 		loader.load('./public/old_executor/scene.gltf', function(gltf){
             let oldExecutor = gltf.scene.children[0]
-			oldExecutor.position.set(-9000,36000,77100)
+			oldExecutor.position.set(-9000, -12000, 79600)   //(-9000,36000,77100)  0, +4370, -500
 			oldExecutor.scale.set(100,100,100)
+			oldExecutor.rotation.x = -64 * Math.PI/180
 			// oldExecutor.domElement.style.position = 'absolute';
             scene.add(oldExecutor)
             // scene.add(gltf.scene);
@@ -101,11 +103,12 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 			loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
 				let tieFighter = gltf.scene.children[0]
-				tieFighter.position.set(15200, 0, 0)
+				tieFighter.position.set(15200,4370, -500)//(15200, 0, 0) 0, +4370, -500
 				tieFighter.scale.set(80, 80, 80)
 				// tieFighter.domElement.style.position = 'absolute';
 				pivot = new THREE.Object3D();
-				pivot.position.set(0,-4700,-33200)
+				pivot.position.set(0, -330, -33700)
+				pivot.rotation.x = 26 * Math.PI/180 //(0,-4700,-33200) 0, +4370, -500
 				pivot.add(tieFighter);
 
 				// //Move object away from pivot
@@ -120,7 +123,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 			loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
 				let tieFighter2 = gltf.scene.children[0]
-				tieFighter2.position.set(11500, 2500,7000)
+				tieFighter2.position.set(11500,6870,6500) //(11500, 2500,7000) (0, +4370, -500)
 				tieFighter2.scale.set(80, 80, 80)
 				// tieFighter.domElement.style.position = 'absolute';
 				// pivot = new THREE.Object3D();
@@ -140,11 +143,12 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 			loader.load('./public/star_wars_tie_fighter/scene.gltf', function(gltf){
 				let tieFighter3 = gltf.scene.children[0]
-				tieFighter3.position.set(7900, 10500, 0)
+				tieFighter3.position.set(7900, 14870, -500) //(7900, 10500, 0) 0, +4370, -500
 				tieFighter3.scale.set(80, 80, 80)
 				// tieFighter.domElement.style.position = 'absolute';
 				pivot2 = new THREE.Object3D();
-				pivot2.position.set(0,-4700,-33200)
+				pivot2.position.set(0, -330, -33700)
+				pivot2.rotation.x = 26 * Math.PI/180 //(0,-4700,-33200) 0, +4370, -500
 				pivot2.add(tieFighter3);
 
 				// //Move object away from pivot
@@ -161,12 +165,14 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 			loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
 				let starDestroyer = gltf.scene.children[0]
-				starDestroyer.position.set(12000, 20000, -10000)
+				starDestroyer.position.set(12000, 14370, -10500) //(12000, 20000, -10000) 0, +4370, -500
 				starDestroyer.scale.set(18, 18, 18)
 				starDestroyer.rotation.z = 45 * Math.PI/180
+				// starDestroyer.rotation.x = -64 * Math.PI/180
 				// starDestroyer.domElement.style.position = 'absolute';
 				pivot3 = new THREE.Object3D();
-				pivot3.position.set(0,-4700,-37200)
+				pivot3.position.set(0,-330,-33700)
+				pivot3.rotation.x = 26 * Math.PI/180 //(0,-4700,-37200)
 				pivot3.add(starDestroyer);
 
 				// //Move object away from pivot
@@ -181,12 +187,14 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 			loader.load('./public/star_wars_imperial_ii_star_destroyer/scene.gltf', function(gltf){
 				let starDestroyer2 = gltf.scene.children[0]
-				starDestroyer2.position.set(-22000, 1000, 22000)
+				starDestroyer2.position.set(-22000, 5370, 22500) //(-22000, 1000, 22000)0, +4370, -500
 				starDestroyer2.scale.set(11, 11, 11)
 				starDestroyer2.rotation.z = 45 * Math.PI/180
+				// starDestroyer2.rotation.x = -64 * Math.PI/180
 				// starDestroyer2.domElement.style.position = 'absolute';
 				pivot4 = new THREE.Object3D();
-				pivot4.position.set(0,-4700,-37200)
+				pivot4.position.set(0, -330, -33700)
+				pivot4.rotation.x = 26 * Math.PI/180 //(0,-4700,-37200)0, +4370, -500
 				pivot4.add(starDestroyer2);
 
 				// //Move object away from pivot
@@ -211,8 +219,10 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 		loader.load('./public/death_star/scene.gltf', function(gltf){
             let deathStar = gltf.scene.children[0]
-			deathStar.position.set(0,-4550,-33200)
+			deathStar.position.set(0,-180,-33700) //(0,-4550,-33200)  diff = 0, +4370, -500
 			deathStar.scale.set(30,30,30)
+			deathStar.rotation.x = -64 * Math.PI/180
+			// console.log(deathStar.rotation) x: -1.57 aka -90
             scene.add(deathStar)
             // scene.add(gltf.scene);
             renderer.render(scene, camera)
@@ -229,7 +239,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		circleGeometry.vertices.shift();
 		let deathCircle = new THREE.LineLoop( circleGeometry, circleMaterial ) 
 		deathCircle.position.set(-20,530,-24040)
-		deathCircle.rotation.x = -26 * Math.PI/180
+		// deathCircle.rotation.x = -26 * Math.PI/180
 		// console.log("x " + (deathCircle.rotation.x))
 		// console.log("y " + (deathCircle.rotation.y))
 		// console.log("z " + (deathCircle.rotation.z))
@@ -239,22 +249,23 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		let circle2Geometry = new THREE.CircleGeometry( 250, 64 );
 		circle2Geometry.vertices.shift();
 		let death2Circle = new THREE.LineLoop( circle2Geometry, circle2Material ) 
-		death2Circle.position.set(-20,2968.663,-19040)
-		death2Circle.rotation.x = -26 * Math.PI/180
+		death2Circle.position.set(-20,530,-19040)
+		// death2Circle.rotation.x = -26 * Math.PI/180
 
 		let circle3Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 		let circle3Geometry = new THREE.CircleGeometry( 500, 64 );
 		circle3Geometry.vertices.shift();
 		let death3Circle = new THREE.LineLoop( circle3Geometry, circle3Material ) 
-		death3Circle.position.set(-20,7845.989,-9040)
-		death3Circle.rotation.x = -26 * Math.PI/180
+		death3Circle.position.set(-20,530,-9040)
+		// death3Circle.rotation.x = -26 * Math.PI/180
 	
 		let circle4Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 		let circle4Geometry = new THREE.CircleGeometry( 1000, 64 );
 		circle4Geometry.vertices.shift();
 		let death4Circle = new THREE.LineLoop( circle4Geometry, circle4Material ) 
-		death4Circle.position.set(-20,12723.315,960)
-		death4Circle.rotation.x = -26 * Math.PI/180
+		death4Circle.position.set(-20,530,960)
+		// death4Circle.rotation.x = -20 * Math.PI/180
+		// console.log(death4Circle.rotation)
 		scene.add(deathCircle, death2Circle, death3Circle, death4Circle);
 
 		
@@ -290,9 +301,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		
 		controls = new FlyControls( camera, renderer.domElement );
         // controls.dispose.mousemove
-		controls.movementSpeed = 25;  //25
+		controls.movementSpeed = 300;  //25
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 10000; //10000
+		controls.rollSpeed = Math.PI / 100; //10000
 		controls.autoForward = false;
 		// controls.dragToLook = true;
 
