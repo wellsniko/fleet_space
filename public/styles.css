@@ -113,23 +113,23 @@ body {
 #x {
   /* color: white; */
   font-weight: 600;
-  line-height: 15px;
-  font-size: small;
+  line-height: 16px;
+  font-size: 13px;
 }
 
 #y {
   /* color: white; */
   font-weight: 600;
-    line-height: 15px;
-  font-size: small;
+  line-height: 16px;
+  font-size: 13px;
 }
 
 
 #z {
   /* color: white; */
   font-weight: 600;
-    line-height: 15px;
-  font-size: small;
+  line-height: 16px;
+  font-size: 13px;
 }
 
 #pitch-rotation {
@@ -216,12 +216,19 @@ body {
 }
 
 #xyz {
-   top: 50%;
+   /* top: 50%;
    left: 28%;
   background-color: rgba(24, 26, 27, 0.65);
   padding-left: 4px;
   padding-right: 4px;
-  border-radius: 5px;
+  border-radius: 5px; */
+      background-color: rgba(24, 26, 27, 0.65);
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 5px;
+    height: fit-content;
 }
 
 #pitch-div {
@@ -239,10 +246,25 @@ body {
   left: 47%;
 }
 
-#up-down-keys, #w-s-keys, #r-f-keys {
+#up-down-keys {
     align-items: center;
     display: flex;
     flex-direction: column;
+}
+
+#r-f-keys {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+}
+
+#w-s-keys {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+
 }
 
 #yaw-div {
@@ -257,20 +279,31 @@ body {
     right: 30%;
 }
 
-#left-right-keys, #q-e-keys, #a-d-keys {
+#left-right-keys, #q-e-keys {
     justify-content: center;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
+#a-d-keys {
+  align-items: center;
+  width: inherit;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
 #left-key, #right-key, #up-key, #down-key, #q-key, #e-key, #a-key, #d-key, #w-key, #s-key, #r-key, #f-key{
       background-color: rgba(24, 26, 27, 0.5);
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 2px;
     border-radius: 5px;
     margin: 3px;
-    font-size: x-large;
+    font-size: 30px;
     border: 1px grey;
 }
 
@@ -360,3 +393,36 @@ body {
   justify-content: space-around;
 }
 
+#axis-yaw{
+  position: absolute;
+    top: 47%;
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+}
+
+#pitch-roll{
+  /* position: absolute; */
+    /* left: 50%; */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-around;
+}
+
+#pitch-roll-2 {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    position: absolute;
+}
+
+.movement-divs {
+  width: inherit;
+  justify-content: center;
+}
+
+#left-right-speed, #up-down-speed, #forward-speed {
+  width: fit-content;
+  margin: auto;
+}
