@@ -13,66 +13,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="public/client.js"></script>
     <script type="module" src="public/splash.js"></script>
+    <script type="module" src="public/three_js_config/FlyControls.js"></script>
     <link rel="stylesheet" type="text/css" href="public/styles.css">
-    <link rel="shortcut icon" type="image/png" href="favicon-2.png" />
+    <link rel="shortcut icon" type="image/png" href="public/favicon-2.png" />
+   
 </head>
 
 <body>
-    
-
+    <div id="win-game" class="modal" style="display:none">
+        <div class="modal-content">YOU WIN</div>
+    </div>
+ <audio id="my-audio" allow="autoplay"><source src="public/imperial_march.mp3">  Your browser does not support this audio</audio>
     <div id="myModal" class="modal" style="display:block">
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <span class="close">&times;</span> -->
-                <h2>FleetSpace</h2>
+                <h1 id="game-title">FleetSpace</h1>
             </div>
             <div class="modal-body">
-                <p>This Death Star landing simulator will familiarize you with the controls of the actual Star Destroyer 
-                    from Star Wars.  Successful docking is achieved when all numbers on the interface are under 0.2.
+                <p id="directions-p">
+                    Your job is to dock the superlaser onto the Death Star. This laser will be used to take out the planet Alderaan, home to a massive force of the Rebellion.  
+                    <br>
+                    This Death Star landing simulator will familiarize you with the controls of an actual Imperial Bomber from
+                    from Star Wars.  Successful docking is achieved when your location on the x, y, and z axis are within 10m of the landing zone, all rotation angles are within 0.2 &#176,
+                    and your velocity is less than 3 m/s. All value fields on the interface should be blue.
                     Movement speed should be slow and requires patience, accuracy, and precision.
                 </p>
-                <br>
-                <p>W - increase up speed <br>S - increase down speed <br>A - Increase left strafe speed <br>
-                D - increase right strafe speed <br> R - increase forward speed <br>F - increase backward speed <br>
-                Q - increase roll left speed <br> E - increase roll right speed <br>Up Arrow - Pitch Up <br> Down Arrow - Pitch Down <br>
-                Left Arrow - Yaw left <br>Right Arrow - Yaw Right</p> 
+                
+                <div id="keys-modal">
+                    <div id="key-description">
+                        <div>
+                        W - Increase up speed <br>S - Increase down speed <br>A - Increase left strafe speed <br>
+                        D - Increase right strafe speed <br> R - Increase forward speed <br>F - Increase backward speed <br>
+                        Q - Increase roll left speed <br> E - Increase roll right speed
+                        </div> 
+                        <div>
+                        &#9650; - Pitch Up<br>&#9664; - Yaw left<br>&#9660; - Pitch Down <br>
+                        &#9654; - Yaw Right
+                        </div>
+                    </div>
+                    <div id="key-directions">
+                        <div id="letter-keys">
+                            <div id="letter-1">
+                                <div id="q-key-2">Q</div>
+                                <div id="w-key-2">W</div>
+                                <div id="e-key-2">E</div>
+                                <div id="r-key-2">R</div>
+                            </div>
+                            <div id="letter-2">
+                                <div id="a-key-2">A</div>
+                                <div id="s-key-2">S</div>
+                                <div id="d-key-2">D</div>
+                                <div id="f-key-2">F</div>
+                            </div>  
+                            
+                            
+                        </div>
+                        <div id="arrow-keys">
+                            <div id="arrow-1">
+                                <div id="up-key-2">&#9650;</div>
+                            </div>
+                            <div id="arrow-2">
+                                <div id=left-key-2>&#9664;</div>
+                                <div id="down-key-2">&#9660;</div>
+                                <div id="right-key-2">&#9654;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                <button id="myBtn">Play</button>
             </div>
-            <button id="myBtn">Play</button>
-            <div class="modal-footer">
+            
+            <!-- <div class="modal-footer">
                 <h3>Modal Footer</h3>
+            </div> -->
+        </div>
+    </div>
+   
+    <div id="ship-stats">
+        <div id="axis-yaw">
+            <div id="xyz">
+                <div id="x" ></div>
+                <div id="y" ></div>
+                <div id="z" ></div>
+            </div>
+            <div id="yaw-div-2" >
+                <div id ="yaw-div" >
+                    <div id="yaw-rotation" ></div> 
+                    <div id="yaw-speed" ></div>
+                </div>
+                <div id="left-right-keys">
+                    <div id=left-key>&#9664;</div>
+                    <div id="right-key">&#9654;</div>
+                </div>
+            </div>
+        </div>
+
+    <div id="pitch-roll-2">
+        <div id="pitch-roll">          
+            <div id="roll-div-2">
+                <div id="roll-div">
+                    <div id="roll-rotation" ></div>
+                    <div id="roll-speed" ></div>
+                </div>
+                <div id="q-e-keys">
+                    <div id="q-key">Q</div>
+                    <div id="e-key">E</div>
+                </div>
+            </div>
+            <div id="pitch-div-2">
+                <div id="pitch-div" >
+                    <div id="pitch-rotation" ></div> 
+                    <div id="pitch-speed" ></div>
+                </div>
+                <div id="up-down-keys">
+                    <div id="up-key">&#9650;</div>
+                    <div id="down-key">&#9660;</div>
+                </div>
             </div>
         </div>
     </div>
-    
-    <div id="ship-stats">
-        <div id="xyz" style="position:absolute">
-            <div id="x" ></div>
-            <div id="y" ></div>
-            <div id="z" ></div>
-        </div>
-        <div id="pitch-div" style="position:absolute">
-            <div id="pitch-rotation" ></div> 
-            <div id="pitch-speed" ></div>
-        </div>
-        <div id="roll-div" style="position:absolute">
-            <div id="roll-rotation" ></div>
-            <div id="roll-speed" ></div>
-        </div>
-        
-        <div id ="yaw-div" style="position:absolute">
-           <div id="yaw-rotation" ></div> 
-           <div id="yaw-speed" ></div>
-        </div>
-        
-       
-        <div id="speed-div" style="position:absolute">
-            
-            <div id="left-right-speed" ></div>
-            <div id="forward-speed" ></div>
-            <div id="up-down-speed" ></div>
-        </div>
-        
 
+
+        
+        <div id="speed-div-2" style="position:absolute">
+            <div id="a-d-keys">
+                <div id="a-key">A</div>
+                <div id="d-key">D</div>
+            </div>
+            <div id="w-s-keys">
+                <div id="w-key">W</div>
+                <div id="s-key">S</div>
+            </div>
+            <div id="r-f-keys">
+                <div id="r-key">R</div>
+                <div id="f-key">F</div>
+            </div>
+        </div>
+
+        <div id="speed-div" style="position:absolute">
+            <div class="movement-divs">
+                <div id="left-right-speed" ></div>
+            </div>
+            <div class="movement-divs">
+                <div id="up-down-speed" ></div>
+            </div>
+            <div class="movement-divs">
+                <div id="forward-speed" ></div>
+            </div>
+        </div>
+        
+        <button id="audio-button" style="position:absolute">&#128266;</button>
     </div>
 </body>
 

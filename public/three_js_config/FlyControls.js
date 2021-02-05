@@ -2,7 +2,7 @@ import {
 	EventDispatcher,
 	Quaternion,
 	Vector3
-} from '../../../build/three.module.js';
+} from '../three/build/three.module.js';
 
 var FlyControls = function ( object, domElement ) {
 
@@ -56,16 +56,16 @@ var FlyControls = function ( object, domElement ) {
 
 		switch ( event.keyCode ) {
 
-			case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
+			// case 16: /* shift */ this.movementSpeedMultiplier = .1; break;
 
-			case 82: /*W*/ this.moveState.forwardBack += .5; break;
-			case 70: /*S*/ this.moveState.forwardBack -= .5; break;
+			case 82: /*R*/ this.moveState.forwardBack += .5; break;
+			case 70: /*F*/ this.moveState.forwardBack -= .5; break;
 
 			case 65: /*A*/ this.moveState.leftRight += .5; break;
 			case 68: /*D*/ this.moveState.leftRight -= .5; break;
 
-			case 87: /*R*/ this.moveState.upDown += .5; break;
-			case 83: /*F*/ this.moveState.upDown -= .5; break;
+			case 87: /*W*/ this.moveState.upDown += .5; break;
+			case 83: /*S*/ this.moveState.upDown -= .5; break;
 
 			case 38: /*up*/ this.moveState.pitch += .5; break;
 			case 40: /*down*/ this.moveState.pitch -= .5; break;
@@ -292,7 +292,9 @@ var FlyControls = function ( object, domElement ) {
 		this.rotationVector.x = ( this.moveState.pitch);
 		this.rotationVector.y = ( this.moveState.yaw);
 		this.rotationVector.z = ( this.moveState.roll);
-
+		// if (this.moveState.upDown !== 0 && this.moveState.pitch !== 0) this.moveVector.y = ( - this.moveState.yaw);
+		// this.moveVector.y = ( this.moveState.pitch);
+		// this.moveVector.z = ( - this.moveState.roll);
 		//console.log( 'rotate:', [ this.rotationVector.x, this.rotationVector.y, this.rotationVector.z ] );
 
 	};
@@ -356,8 +358,10 @@ var FlyControls = function ( object, domElement ) {
 	// this.domElement.addEventListener( 'mousemove', _mousemove, false );
 	// this.domElement.addEventListener( 'mousedown', _mousedown, false );
 	// this.domElement.addEventListener( 'mouseup', _mouseup, false );
-
+	// if (document.getElementById("myModal").style.display === "none") 
+	
 	window.addEventListener( 'keydown', _keydown, false );
+	
 	// window.addEventListener( 'keyup', _keyup, false );
 
 	this.updateMovementVector();
