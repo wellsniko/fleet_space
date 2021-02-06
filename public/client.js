@@ -224,6 +224,10 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			deathStar.position.set(0,-180,-33700) //(0,-4550,-33200)  diff = 0, +4370, -500
 			deathStar.scale.set(30,30,30)
 			deathStar.rotation.x = -64 * Math.PI/180
+			console.log(deathStar)
+			
+
+			
 			// console.log(deathStar.rotation) x: -1.57 aka -90
             scene.add(deathStar)
             // scene.add(gltf.scene);
@@ -599,7 +603,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		upDownSpeed.style.color = upDownColor;
 		if (controls.moveState.upDown > 0 ) {speedKeys.push("w-key")} else {slowKeys.push('w-key')}
 		if (controls.moveState.upDown < 0 ) {speedKeys.push("s-key")} else {slowKeys.push('s-key')}
-		
+		console.log(camera)
 
 
 		speedKeys.forEach(id => {
@@ -656,7 +660,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			&& (controls.moveState.upDown).between(-1, 1)
 			&& (controls.moveState.leftRight).between(-1, 1)
 
-		){document.getElementById("win-game").style.display = block} 
+		){document.getElementById("win-game").style.display = 'block'} 
 			// console.log(targetY-camera.position.y)
 
 			// console.log(controls.moveState.forwardBack)
