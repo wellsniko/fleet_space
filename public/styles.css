@@ -470,7 +470,7 @@ body {
 }
 
 
-#win-game {
+#win-game, #lose-game {
 
     display: none;
     position: fixed;
@@ -485,7 +485,7 @@ body {
 }
 
 
-#win-modal-content {
+#win-modal-content, #lose-modal-content {
   font-family: Lato,Verdana,Arial,geneva,sans-serif;
   text-align: center;
   /* font-size: 40px; */
@@ -495,14 +495,14 @@ body {
 }
 
 
-#win-h1 {
+#win-h1, #lose-h1 {
     background-color: black;
     color: red;
     padding: 150px;
     /* display: flex; */
 }
 
-#win-p-div {
+#win-p-div, #lose-p-div {
     width: 40%;
     margin: auto;
     line-height: 29px;

@@ -603,7 +603,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		upDownSpeed.style.color = upDownColor;
 		if (controls.moveState.upDown > 0 ) {speedKeys.push("w-key")} else {slowKeys.push('w-key')}
 		if (controls.moveState.upDown < 0 ) {speedKeys.push("s-key")} else {slowKeys.push('s-key')}
-		console.log(camera)
+		console.log(camera.position)
 
 
 		speedKeys.forEach(id => {
@@ -660,9 +660,13 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			&& (controls.moveState.upDown).between(-1, 1)
 			&& (controls.moveState.leftRight).between(-1, 1)
 
-		){document.getElementById("win-game").style.display = 'block'} 
-			// console.log(targetY-camera.position.y)
-
+		){
+			document.getElementById("win-game").style.display = 'block'
+		} 
+		// 	// console.log(targetY-camera.position.y)
+		if ((camera.position.z < -24600) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
+			document.getElementById("lose-game").style.display = 'block'
+		}
 			// console.log(controls.moveState.forwardBack)
 	}
 
