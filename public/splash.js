@@ -25,13 +25,13 @@ btn.onclick = function() {
         }
     }, 200);
     
+
+// })
+}
       let mySong = document.getElementById("my-audio")
 	mySong.volume = 0.15;
 	// document.body.addEventListener("mousemove", function () {
     mySong.play()
-// })
-}
-
 // span.onclick = function() {
 //   modal.style.display = "none";
 // }

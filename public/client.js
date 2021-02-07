@@ -43,13 +43,25 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	// console.log(myModal.style.opacity)
 	
 	export const init = ()=> {
+
+		// var flash = false;
+		// var task = setInterval(function() {
+		// 	if(flash = !flash) {
+		// 		document.body.style.zIndex = '20';
+		// 		document.body.style.backgroundColor = '#ff0';
+		// 	} else {
+		// 		document.body.style.backgroundColor = '#f00';
+		// 	}
+		// }, 1000);
+
+
 		scene = new THREE.Scene();
 		console.log("hi")
 		camera = new THREE.PerspectiveCamera( 25, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 1000000 );
 		camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
 		camera.rotation.x = 9 * Math.PI/180
 		camera.rotation.y = -4 * Math.PI/180
-		camera.rotation.z = -6 * Math.PI/180
+		camera.rotation.z = -12 * Math.PI/180
 		dirLight = new THREE.DirectionalLight( 0xffffff, 1.8 );
         dirLight.position.set( - 1, 0, 1 ).normalize();
         dirLight2 = new THREE.DirectionalLight( 0xffffff, 1.8 );
