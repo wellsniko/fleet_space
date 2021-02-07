@@ -1,4 +1,4 @@
-// import * as CLIENT from './client.js'
+import * as CLIENT from './client.js'
 
 var modal = document.getElementById("myModal");
 
@@ -7,16 +7,19 @@ var btn = document.getElementById("play-btn");
 // var span = document.getElementsByClassName("close")[0];
 
 btn.onclick = function() {
-  // CLIENT.init()
-  // CLIENT.animate()
+  CLIENT.init()
+  CLIENT.animate()
   // modal.style.display = "none";
       var fadeEffect = setInterval(function () {
+          
         if (!modal.style.opacity) {
             modal.style.opacity = 1;
         }
         if (modal.style.opacity > 0) {
-            modal.style.opacity -= 0.2;
+            
+            modal.style.opacity -= 0.1;
         } else {
+            
             clearInterval(fadeEffect);
             modal.style.display = "none";
         }
