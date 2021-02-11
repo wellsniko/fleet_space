@@ -12,7 +12,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	let pivot2
 	let pivot3
 	let pivot4
-	const targetX= -20
+	const targetX= -180
 	const targetY= 530
 	const targetZ= -24040
 	const targetXRotation = 0
@@ -164,29 +164,30 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
             renderer.render(scene, camera)
 		});
 					
-		let circleMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-		let circleGeometry = new THREE.CircleGeometry( 250, 64 );
+		let circleMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, opacity: 0.5 } );
+		let circleGeometry = new THREE.CircleGeometry( 150, 64 );
 		circleGeometry.vertices.shift();
 		let deathCircle = new THREE.LineLoop( circleGeometry, circleMaterial ) 
-		deathCircle.position.set(-20,530,-24040)
+		deathCircle.position.set(-180,530,-24040)
 
-    	let circle2Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+    	let circle2Material = new THREE.MeshBasicMaterial( { color: 0xffff00, opacity: 0.5 } );
 		let circle2Geometry = new THREE.CircleGeometry( 250, 64 );
 		circle2Geometry.vertices.shift();
 		let death2Circle = new THREE.LineLoop( circle2Geometry, circle2Material ) 
-		death2Circle.position.set(-20,530,-19040)
+		death2Circle.position.set(-180,530,-17040)
 
-		let circle3Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+		let circle3Material = new THREE.MeshBasicMaterial( { color: 0xffff00, opacity: 0.5 } );
 		let circle3Geometry = new THREE.CircleGeometry( 500, 64 );
 		circle3Geometry.vertices.shift();
 		let death3Circle = new THREE.LineLoop( circle3Geometry, circle3Material ) 
-		death3Circle.position.set(-20,530,-9040)
+		death3Circle.position.set(-180,530,-9040)
 	
-		let circle4Material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+		let circle4Material = new THREE.MeshBasicMaterial( { color: 0xffff00,  opacity: 0.5 } );
 		let circle4Geometry = new THREE.CircleGeometry( 1000, 64 );
 		circle4Geometry.vertices.shift();
 		let death4Circle = new THREE.LineLoop( circle4Geometry, circle4Material ) 
-		death4Circle.position.set(-20,530,960)
+		
+		death4Circle.position.set(-180,530,960)
 		scene.add(deathCircle, death2Circle, death3Circle, death4Circle);
 		
         let materialArray = [];
@@ -215,9 +216,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
 		controls = new FlyControls( camera, renderer.domElement );
-		controls.movementSpeed = 300;  //25
+		controls.movementSpeed = 25;  //25
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 100; //10000
+		controls.rollSpeed = Math.PI / 10000; //10000
 		controls.autoForward = false;
 
 		var audioButton = document.getElementById("audio-button");
