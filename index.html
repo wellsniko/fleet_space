@@ -30,6 +30,7 @@
                         What in the world are you doing out there? Get it together, soldier!
                     </p>
                 </div>
+                <button id="lose-play-btn">Try Again</button>
             </div>
         </div>
 
@@ -43,14 +44,14 @@
                         Congratulations, soldier, you landed the weapon successfully.  Alderaan will be reduced to ashes in space thanks to your effort. Long live the Empire!
                     </p>
                 </div>
+                <button id="win-play-btn">Play Again</button>
             </div>
     </div>
   
- <audio id="my-audio" allow="autoplay" muted><source src="public/imperial_march.mp3">  Your browser does not support this audio</audio>
+ <audio id="my-audio" allow="autoplay"><source src="public/imperial_march.mp3">  Your browser does not support this audio</audio>
     <div id="myModal" class="modal" style="display:block;opacity:1">
         <div class="modal-content">
             <div class="modal-header">
-                <!-- <span class="close">&times;</span> -->
                 <h1 id="game-title">FleetSpace</h1>
             </div>
             <div class="modal-body">
@@ -65,12 +66,13 @@
                 
                 <div id="keys-modal">
                     <div id="key-description">
-                        <div>
+                        <div id="key-description-1">
                         W - Increase up speed <br>S - Increase down speed <br>A - Increase left strafe speed <br>
                         D - Increase right strafe speed <br> R - Increase forward speed <br>F - Increase backward speed <br>
                         Q - Increase roll left speed <br> E - Increase roll right speed
                         </div> 
-                        <div>
+                        <img id='menu-photo' src="public/death-star-icon-18-256.png" alt="">
+                        <div id="key-description-2">
                         &#9650; - Pitch Up<br>&#9664; - Yaw left<br>&#9660; - Pitch Down <br>
                         &#9654; - Yaw Right
                         </div>

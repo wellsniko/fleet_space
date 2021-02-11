@@ -1,7 +1,4 @@
 import * as THREE from './three/build/three.module.js';
-// import {OrbitControls, MapControls} from '/jsm/controls/OrbitControls.js';
-// import {FlyControls} from '/jsm/controls/FlyControls.js'
-// import Stats from '/jsm/libs/stats.module.js';
 import {FlyControls} from './three_js_config/FlyControls.js'
 import { GLTFLoader } from './three/examples/jsm/loaders/GLTFLoader.js';
 import { EffectComposer } from './three/examples/jsm/postprocessing/EffectComposer.js';
@@ -28,30 +25,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	let loader = new GLTFLoader();   
 	
 	let shipUpdateCounter = 0
-	// controls = null
-	
-	let myModal = document.getElementById("myModal")
-	
-	// if (myModal.style.opacity < .9){
-	// 	init();
-
-		
-	// 	animate();
-	
-
-	// }
 	
 	export const init = ()=> {
-
-		// var flash = false;
-		// var task = setInterval(function() {
-		// 	if(flash = !flash) {
-		// 		document.body.style.zIndex = '20';
-		// 		document.body.style.backgroundColor = '#ff0';
-		// 	} else {
-		// 		document.body.style.backgroundColor = '#f00';
-		// 	}
-		// }, 1000);
 
 
 		scene = new THREE.Scene();
@@ -214,20 +189,20 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
 		controls = new FlyControls( camera, renderer.domElement );
-		controls.movementSpeed = 25;  //25
+		controls.movementSpeed = 800;  //25
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 10000; //10000
+		controls.rollSpeed = Math.PI / 100; //10000
 		controls.autoForward = false;
 
 		var audioButton = document.getElementById("audio-button");
 
 		audioButton.onclick = function() {
 			let mySong = document.getElementById("my-audio")
-			if (mySong.volume !== 0){
-				mySong.volume = 0
+			if (mySong.muted === false){
+				mySong.muted = true
 				audioButton.innerHTML = "&#128263;"
 			} else {
-				mySong.volume = 0.15
+				mySong.muted = false
 				audioButton.innerHTML = "&#128266;"
 			}		
 		}
@@ -291,9 +266,41 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	
 
 	export const animate = ()=> {
+
+		if ((targetZ-camera.position.z).between(-100, 100)  //between 1.0 m or 10.m for now, probably do 10 m for y and z axis cuz the circle width
+			&& (targetY-camera.position.y).between(-100, 100)
+			&& (targetX-camera.position.x).between(-100, 100)
+			&& 	(camera.rotation.x - targetXRotation).between(-0.00355, 0.00355) //this is .2 now, should it be .02?
+			&& (camera.rotation.y).between(-0.00355, 0.00355) 
+			&& (camera.rotation.z).between(-0.00355, 0.00355)
+			&& (controls.moveState.forwardBack).between(-1, 1) //this is less than 3 m/s
+			&& (controls.moveState.upDown).between(-1, 1)
+			&& (controls.moveState.leftRight).between(-1, 1)){
+			
+			document.getElementById("win-game").style.display = 'block'
+			document.getElementById("win-game").style.opacity = '1'
+			camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
+			camera.rotation.x = 9 * Math.PI/180
+			camera.rotation.y = -4 * Math.PI/180
+			camera.rotation.z = -12 * Math.PI/180
+			controls.moveState = { upDown: 0, leftRight: 0, forwardBack: 0, pitch: 0, yaw: 0, roll: 0 };
+			controls.updateMovementVector()
+		} 
+
+		if (!(camera.position.y).between(-55600, 50000) || !(camera.position.x).between(-52600, 50000) || !(camera.position.z).between(-24600, 100000) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
+			document.getElementById("lose-game").style.display = 'block'
+			document.getElementById("lose-game").style.opacity = '1'
+			camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
+			camera.rotation.x = 9 * Math.PI/180
+			camera.rotation.y = -4 * Math.PI/180
+			camera.rotation.z = -12 * Math.PI/180
+			controls.moveState = { upDown: 0, leftRight: 0, forwardBack: 0, pitch: 0, yaw: 0, roll: 0 };
+			controls.updateMovementVector()
+		} 
+
 		requestAnimationFrame( animate );
-		if (document.getElementById("myModal").style.display === "none") {
-			if (pivot) pivot.rotation.y += -.015
+			
+		if (pivot) pivot.rotation.y += -.015
 			if (pivot2) {
 				pivot2.rotation.y += -.006
 				pivot2.rotation.z += .0015
@@ -302,18 +309,19 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 				pivot3.rotation.y -= .0002
 			}
 			if (pivot4) pivot4.rotation.y += .0003
-			render();
 			
-			shipUpdateCounter += 1
-			if (shipUpdateCounter === 10){
-				updateShipStats()
-				shipUpdateCounter = 0
+			
+			
+		render();
+			
+		shipUpdateCounter += 1
+		if (shipUpdateCounter === 10){
+			updateShipStats()
+			shipUpdateCounter = 0
 				
-			}			
-		}
+		}	 	
+		
 	}
-
-
 
 	function render() {
 		const delta = clock.getDelta();
@@ -323,7 +331,6 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	}
 
 	function updateShipStats(){
-
 		let speedKeys = []
 		let slowKeys = []
 
@@ -416,20 +423,4 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			document.getElementById(id).style.color = 'white'
 		})
 	
-		if ((targetZ-camera.position.z).between(-100, 100)  //between 1.0 m or 10.m for now, probably do 10 m for y and z axis cuz the circle width
-			&& (targetY-camera.position.y).between(-100, 100)
-			&& (targetX-camera.position.x).between(-100, 100)
-			&& 	(camera.rotation.x - targetXRotation).between(-0.00355, 0.00355) //this is .2 now, should it be .02?
-			&& (camera.rotation.y).between(-0.00355, 0.00355) 
-			&& (camera.rotation.z).between(-0.00355, 0.00355)
-			&& (controls.moveState.forwardBack).between(-1, 1) //this is less than 3 m/s
-			&& (controls.moveState.upDown).between(-1, 1)
-			&& (controls.moveState.leftRight).between(-1, 1)
-
-		){
-			document.getElementById("win-game").style.display = 'block'
-		} 
-		if (!(camera.position.y).between(-55600, 50000) || !(camera.position.x).between(-52600, 50000) || !(camera.position.z).between(-24600, 100000) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
-			document.getElementById("lose-game").style.display = 'block'
-		}
 	}
