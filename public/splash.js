@@ -1,14 +1,21 @@
 import * as CLIENT from './client.js'
 
 var modal = document.getElementById("myModal");
-
+var loseModal = document.getElementById("lose-game");
 var btn = document.getElementById("play-btn");
-
+let mySong = document.getElementById("my-audio")
 // var span = document.getElementsByClassName("close")[0];
+var loseBtn = document.getElementById("lose-play-btn");
+var winBtn = document.getElementById('win-play-btn')
+var winModal = document.getElementById('win-game')
+
+
 
 btn.onclick = function() {
   CLIENT.init()
   CLIENT.animate()
+  mySong.play() 
+  mySong.volume = 0.10;
   // modal.style.display = "none";
       var fadeEffect = setInterval(function () {
           
@@ -28,6 +35,44 @@ btn.onclick = function() {
 
 
 
+loseBtn.onclick = function() {
+  
+      var fadeEffect = setInterval(function () {
+          
+        if (!loseModal.style.opacity) {
+            loseModal.style.opacity = 1;
+        }
+        if (loseModal.style.opacity > 0) {
+            
+            loseModal.style.opacity -= 0.1;
+        } else {
+            
+            clearInterval(fadeEffect);
+            loseModal.style.display = "none";
+        }
+    }, 200);
+}
+
+
+
+winBtn.onclick = function() {
+  
+      var fadeEffect = setInterval(function () {
+          
+        if (!winModal.style.opacity) {
+            winModal.style.opacity = 1;
+        }
+        if (winModal.style.opacity > 0) {
+            
+            winModal.style.opacity -= 0.1;
+        } else {
+            
+            clearInterval(fadeEffect);
+            winModal.style.display = "none";
+        }
+    }, 200);
+}
+
 
 // window.onclick = function(event) {
 //   if (event.target == modal) {
@@ -40,17 +85,18 @@ btn.onclick = function() {
 //   }
 // }
 
-window.addEventListener('mousemove', movePlaySong);
+// window.addEventListener('mousemove', movePlaySong);
 
 
-function movePlaySong(event){
+// function movePlaySong(event){
 
-    let mySong = document.getElementById("my-audio")
+//     let mySong = document.getElementById("my-audio")
 	 
-    mySong.play() 
-    mySong.muted = false
-    mySong.volume = 0.15;
-}
+//     mySong.play() 
+//     mySong.muted = false
+//     mySong.volume = 0.10;
+//     window.removeEventListener( 'mousemove', movePlaySong, false );
+// }
 
 
 

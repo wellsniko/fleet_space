@@ -214,23 +214,24 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
 		controls = new FlyControls( camera, renderer.domElement );
-		controls.movementSpeed = 25;  //25
+		controls.movementSpeed = 800;  //25
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 10000; //10000
+		controls.rollSpeed = Math.PI / 100; //10000
 		controls.autoForward = false;
 
 		var audioButton = document.getElementById("audio-button");
 
 		audioButton.onclick = function() {
 			let mySong = document.getElementById("my-audio")
-			if (mySong.volume !== 0){
-				mySong.volume = 0
+			if (mySong.muted === false){
+				mySong.muted = true
 				audioButton.innerHTML = "&#128263;"
 			} else {
-				mySong.volume = 0.15
+				mySong.muted = false
 				audioButton.innerHTML = "&#128266;"
 			}		
 		}
+		console.log(scene)
 		
 		window.addEventListener( 'keydown', flashControls, false );
 		window.addEventListener( 'resize', onWindowResize, false );
@@ -291,6 +292,44 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	
 
 	export const animate = ()=> {
+		if ((targetZ-camera.position.z).between(-100, 100)  //between 1.0 m or 10.m for now, probably do 10 m for y and z axis cuz the circle width
+			&& (targetY-camera.position.y).between(-100, 100)
+			&& (targetX-camera.position.x).between(-100, 100)
+			&& 	(camera.rotation.x - targetXRotation).between(-0.00355, 0.00355) //this is .2 now, should it be .02?
+			&& (camera.rotation.y).between(-0.00355, 0.00355) 
+			&& (camera.rotation.z).between(-0.00355, 0.00355)
+			&& (controls.moveState.forwardBack).between(-1, 1) //this is less than 3 m/s
+			&& (controls.moveState.upDown).between(-1, 1)
+			&& (controls.moveState.leftRight).between(-1, 1)){
+			
+			document.getElementById("win-game").style.display = 'block'
+			document.getElementById("win-game").style.opacity = '1'
+			camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
+			camera.rotation.x = 9 * Math.PI/180
+			camera.rotation.y = -4 * Math.PI/180
+			camera.rotation.z = -12 * Math.PI/180
+			controls.moveState = { upDown: 0, leftRight: 0, forwardBack: 0, pitch: 0, yaw: 0, roll: 0 };
+			controls.updateMovementVector()
+		} 
+
+		if (!(camera.position.y).between(-55600, 50000) || !(camera.position.x).between(-52600, 50000) || !(camera.position.z).between(-24600, 100000) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
+			document.getElementById("lose-game").style.display = 'block'
+			document.getElementById("lose-game").style.opacity = '1'
+			camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
+			camera.rotation.x = 9 * Math.PI/180
+			camera.rotation.y = -4 * Math.PI/180
+			camera.rotation.z = -12 * Math.PI/180
+			controls.moveState = { upDown: 0, leftRight: 0, forwardBack: 0, pitch: 0, yaw: 0, roll: 0 };
+			controls.updateMovementVector()
+		
+			// scene.remove.apply(scene, scene.children);
+			// scene.remove.apply(scene, scene);
+			// camera.remove.apply(camera, camera)
+			// controls.remove.apply(controls, controls)
+			
+
+		} 
+
 		requestAnimationFrame( animate );
 		if (document.getElementById("myModal").style.display === "none") {
 			if (pivot) pivot.rotation.y += -.015
@@ -302,15 +341,46 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 				pivot3.rotation.y -= .0002
 			}
 			if (pivot4) pivot4.rotation.y += .0003
-			render();
+		}
+			
+			
+			
+		render();
 			
 			shipUpdateCounter += 1
 			if (shipUpdateCounter === 10){
 				updateShipStats()
 				shipUpdateCounter = 0
 				
-			}			
-		}
+			}	
+
+
+
+
+		// if ((targetZ-camera.position.z).between(-100, 100)  //between 1.0 m or 10.m for now, probably do 10 m for y and z axis cuz the circle width
+		// 	&& (targetY-camera.position.y).between(-100, 100)
+		// 	&& (targetX-camera.position.x).between(-100, 100)
+		// 	&& 	(camera.rotation.x - targetXRotation).between(-0.00355, 0.00355) //this is .2 now, should it be .02?
+		// 	&& (camera.rotation.y).between(-0.00355, 0.00355) 
+		// 	&& (camera.rotation.z).between(-0.00355, 0.00355)
+		// 	&& (controls.moveState.forwardBack).between(-1, 1) //this is less than 3 m/s
+		// 	&& (controls.moveState.upDown).between(-1, 1)
+		// 	&& (controls.moveState.leftRight).between(-1, 1)
+
+		// ){
+		// 	document.getElementById("win-game").style.display = 'block'
+		// 	scene.dispose()
+		// } 
+
+		// if (!(camera.position.y).between(-55600, 50000) || !(camera.position.x).between(-52600, 50000) || !(camera.position.z).between(-24600, 100000) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
+		// 	document.getElementById("lose-game").style.display = 'block'
+		// 	scene.remove.apply(scene, scene.children);
+		// 	scene.remove.apply(scene, scene);
+			
+
+		// } 
+		
+		
 	}
 
 
@@ -323,7 +393,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	}
 
 	function updateShipStats(){
-
+		// console.log(camera)
+		console.log(controls.moveState)
+		// console.log(document.getElementById("lose-game").style.display)
 		let speedKeys = []
 		let slowKeys = []
 
@@ -416,20 +488,5 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			document.getElementById(id).style.color = 'white'
 		})
 	
-		if ((targetZ-camera.position.z).between(-100, 100)  //between 1.0 m or 10.m for now, probably do 10 m for y and z axis cuz the circle width
-			&& (targetY-camera.position.y).between(-100, 100)
-			&& (targetX-camera.position.x).between(-100, 100)
-			&& 	(camera.rotation.x - targetXRotation).between(-0.00355, 0.00355) //this is .2 now, should it be .02?
-			&& (camera.rotation.y).between(-0.00355, 0.00355) 
-			&& (camera.rotation.z).between(-0.00355, 0.00355)
-			&& (controls.moveState.forwardBack).between(-1, 1) //this is less than 3 m/s
-			&& (controls.moveState.upDown).between(-1, 1)
-			&& (controls.moveState.leftRight).between(-1, 1)
 
-		){
-			document.getElementById("win-game").style.display = 'block'
-		} 
-		if (!(camera.position.y).between(-55600, 50000) || !(camera.position.x).between(-52600, 50000) || !(camera.position.z).between(-24600, 100000) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
-			document.getElementById("lose-game").style.display = 'block'
-		}
 	}

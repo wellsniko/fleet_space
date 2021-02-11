@@ -98,11 +98,11 @@ body {
   color: white;
 } */
 
-#play-btn:hover{
+#play-btn:hover, #win-play-btn:hover, #lose-play-btn:hover {
     background: rgb(11, 11, 11);
 }
 
-#play-btn:focus{
+#play-btn:focus, #win-play-btn:hover, #lose-play-btn:hover {
     background:limegreen;
     color: black
 }
@@ -405,8 +405,19 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     line-height: 2;
+}
+
+#key-description-1, #key-description-2 {
+  display: flex;
+  justify-content: center;
+  width: 28%;
+}
+
+#menu-photo {
+    height: 189px;
+    margin-top: 52px;
 }
 
 #axis-yaw{
@@ -465,6 +476,41 @@ body {
     border: .1px solid gray;
 }
 
+
+#lose-play-btn {
+    width: 300px;
+    margin-bottom: 100px;
+    cursor: pointer;
+    /* margin: auto; */
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 220px;
+    color: limegreen;
+    background: black;
+    /* box-shadow: none; */
+    border-radius: 3px;
+    padding: 15px;
+    font-size: 18px;
+    border: .1px solid gray;
+}
+
+#win-play-btn {
+    width: 300px;
+    margin-bottom: 100px;
+    cursor: pointer;
+    /* margin: auto; */
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 220px;
+    color: limegreen;
+    background: black;
+    /* box-shadow: none; */
+    border-radius: 3px;
+    padding: 15px;
+    font-size: 18px;
+    border: .1px solid gray;
+}
+
 #letter-keys {
     display: flex;
     flex-direction: column;
@@ -495,7 +541,7 @@ body {
   text-align: center;
   /* font-size: 40px; */
   margin: auto;
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
 }
 
