@@ -189,9 +189,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
 		controls = new FlyControls( camera, renderer.domElement );
-		controls.movementSpeed = 800;  //25
+		controls.movementSpeed = 25;  //25
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 100; //10000
+		controls.rollSpeed = Math.PI / 10000; //10000
 		controls.autoForward = false;
 
 		var audioButton = document.getElementById("audio-button");
