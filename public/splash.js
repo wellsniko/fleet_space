@@ -26,9 +26,6 @@ btn.onclick = function() {
     }, 200);
 }
 
-    let mySong = document.getElementById("my-audio")
-	  mySong.volume = 0.15;
-    mySong.play()
 
 
 
@@ -42,6 +39,20 @@ btn.onclick = function() {
 
 //   }
 // }
+
+window.addEventListener('mousemove', movePlaySong);
+
+
+function movePlaySong(event){
+
+    let mySong = document.getElementById("my-audio")
+	 
+    mySong.play() 
+    mySong.muted = false
+    mySong.volume = 0.15;
+}
+
+
 
 window.addEventListener( 'keydown', flashControlDirections, false );
 

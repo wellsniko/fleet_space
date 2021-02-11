@@ -40,7 +40,6 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	
 
 	// }
-	// console.log(myModal.style.opacity)
 	
 	export const init = ()=> {
 
@@ -56,7 +55,6 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 
 
 		scene = new THREE.Scene();
-		console.log("hi")
 		camera = new THREE.PerspectiveCamera( 25, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 1000000 );
 		camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
 		camera.rotation.x = 9 * Math.PI/180
