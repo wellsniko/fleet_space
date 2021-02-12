@@ -1,5 +1,5 @@
 import * as THREE from './three/build/three.module.js';
-import {FlyControls} from './three_js_config/FlyControls.js'
+import {CustomSpaceControls} from './three_js_custom/CustomSpaceControls.js'
 import { GLTFLoader } from './three/examples/jsm/loaders/GLTFLoader.js';
 import { EffectComposer } from './three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from './three/examples/jsm/postprocessing/RenderPass.js';
@@ -188,7 +188,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
-		controls = new FlyControls( camera, renderer.domElement );
+		controls = new CustomSpaceControls( camera, renderer.domElement );
 		controls.movementSpeed = 50;  //25
 		controls.domElement = renderer.domElement;
 		controls.rollSpeed = Math.PI / 8000; //10000
