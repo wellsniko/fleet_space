@@ -1,5 +1,5 @@
 import * as THREE from './three/build/three.module.js';
-import {FlyControls} from './three_js_config/FlyControls.js'
+import {CustomSpaceControls} from './three_js_custom/CustomSpaceControls.js'
 import { GLTFLoader } from './three/examples/jsm/loaders/GLTFLoader.js';
 import { EffectComposer } from './three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from './three/examples/jsm/postprocessing/RenderPass.js';
@@ -34,7 +34,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
 		camera.rotation.x = 9 * Math.PI/180
 		camera.rotation.y = -4 * Math.PI/180
-		camera.rotation.z = -12 * Math.PI/180
+		camera.rotation.z = 23 * Math.PI/180
 		dirLight = new THREE.DirectionalLight( 0xffffff, 1.8 );
         dirLight.position.set( - 1, 0, 1 ).normalize();
         dirLight2 = new THREE.DirectionalLight( 0xffffff, 1.8 );
@@ -188,10 +188,10 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
-		controls = new FlyControls( camera, renderer.domElement );
-		controls.movementSpeed = 25;  //25
+		controls = new CustomSpaceControls( camera, renderer.domElement );
+		controls.movementSpeed = 50;  //25
 		controls.domElement = renderer.domElement;
-		controls.rollSpeed = Math.PI / 10000; //10000
+		controls.rollSpeed = Math.PI / 8000; //10000
 		controls.autoForward = false;
 
 		var audioButton = document.getElementById("audio-button");
