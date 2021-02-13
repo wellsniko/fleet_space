@@ -15,6 +15,7 @@ btn.onclick = function() {
   CLIENT.animate()
   mySong.play() 
   mySong.volume = 0.10;
+  mySong.loop = true
   var fadeEffect = setInterval(function () {   
     if (!modal.style.opacity) {
         modal.style.opacity = 1;
