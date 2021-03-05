@@ -25,8 +25,9 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 	let loader = new GLTFLoader();   
 	
 	let shipUpdateCounter = 0
-	
-	export const init = ()=> {
+	init()
+
+	function init(){
 
 
 		scene = new THREE.Scene();
@@ -189,7 +190,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 		document.body.appendChild( renderer.domElement );
 		controls = new CustomSpaceControls( camera, renderer.domElement );
-		controls.movementSpeed = 50;  //25
+		controls.movementSpeed = 60;  //25
 		controls.domElement = renderer.domElement;
 		controls.rollSpeed = Math.PI / 8000; //10000
 		controls.autoForward = false;

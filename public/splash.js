@@ -11,7 +11,7 @@ var winModal = document.getElementById('win-game')
 
 btn.onclick = function() {
 
-  CLIENT.init()
+  // CLIENT.init()
   CLIENT.animate()
   mySong.play() 
   mySong.volume = 0.10;
