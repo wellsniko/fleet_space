@@ -43,8 +43,8 @@ var CustomSpaceControls = function ( object, domElement ) {
 
 		switch ( event.keyCode ) {
 
-			case 82: /*R*/ this.moveState.forwardBack += .5; break;
-			case 70: /*F*/ this.moveState.forwardBack -= .5; break;
+			case 13: /*R*/ this.moveState.forwardBack += .5; break;
+			case 16: /*F*/ this.moveState.forwardBack -= .5; break;
 
 			case 65: /*A*/ this.moveState.leftRight += .5; break;
 			case 68: /*D*/ this.moveState.leftRight -= .5; break;

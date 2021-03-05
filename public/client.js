@@ -223,8 +223,8 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 		let pressedKey 
 			switch ( event.keyCode ) {
 
-			case 82: /*R*/ pressedKey = "r-key"; break; 
-			case 70: /*F*/ pressedKey = "f-key"; break; 
+			case 13: /*R*/ pressedKey = "r-key"; break; 
+			case 16: /*F*/ pressedKey = "f-key"; break; 
 
 			case 65: /*A*/ pressedKey = "a-key"; break; 
 			case 68: /*D*/ pressedKey = "d-key"; break; 
@@ -287,7 +287,7 @@ import { FilmPass } from './three/examples/jsm/postprocessing/FilmPass.js';
 			controls.updateMovementVector()
 		} 
 
-		if (!(camera.position.y).between(-55600, 50000) || !(camera.position.x).between(-52600, 50000) || !(camera.position.z).between(-24600, 100000) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
+		if (!(camera.position.y).between(-65600, 60000) || !(camera.position.x).between(-62600, 60000) || !(camera.position.z).between(-24600, 100000) || (camera.position.z < -2310 && !(camera.position.x).between(-2600, 2400)) && !(camera.position.y).between(-2600, 2400)) {
 			document.getElementById("lose-game").style.display = 'block'
 			document.getElementById("lose-game").style.opacity = '1'
 			camera.position.set(-9000,-14000,90000) //-9000,40000,90000 0, +4370, -500
